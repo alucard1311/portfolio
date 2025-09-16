@@ -812,12 +812,18 @@
                         </div>
                     ` : ''}
                     <div class="project-controls ${devMode ? '' : 'hidden'}" style="margin-top: 15px; padding-top: 15px; border-top: 1px solid #e1e5e9;">
-                        <button onclick="editProject(${project.id})" class="btn" style="font-size: 0.8rem; padding: 8px 16px; margin-right: 10px;">
-                            ✏️ Edit
-                        </button>
-                        <button onclick="deleteProject(${project.id})" class="btn" style="font-size: 0.8rem; padding: 8px 16px; background: linear-gradient(45deg, #e74c3c, #c0392b);">
-                            🗑️ Delete
-                        </button>
+                        ${!project.isHardCoded ? `
+                            <button onclick="editProject(${project.id})" class="btn" style="font-size: 0.8rem; padding: 8px 16px; margin-right: 10px;">
+                                ✏️ Edit
+                            </button>
+                            <button onclick="deleteProject(${project.id})" class="btn" style="font-size: 0.8rem; padding: 8px 16px; background: linear-gradient(45deg, #e74c3c, #c0392b);">
+                                🗑️ Delete
+                            </button>
+                        ` : `
+                            <span style="font-size: 0.8rem; color: #667eea; font-weight: 600;">
+                                🔒 Hard-coded Project
+                            </span>
+                        `}
                     </div>
                 </div>
             `).join('');
@@ -826,7 +832,7 @@
         // Initialize with empty projects view
         renderProjects();
 
-        // Add some real projects based on resume
+        // Add some real projects based on resume with hard-coded videos
         setTimeout(() => {
             if (projects.length === 0) {
                 projects.push(
@@ -836,8 +842,10 @@
                         category: "Autonomous Underwater Vehicles",
                         description: "Led end-to-end development of a custom-built underwater vehicle for acoustic tracking of marine targets. Designed and integrated onboard electronics, hydrophones, power systems, and waterproofed housings. Developed custom firmware for pressure sensors and thrusters with ROS-based software architecture.",
                         technologies: ["ROS", "C++", "Python", "Underwater Electronics", "Acoustic Processing", "Custom Firmware"],
-                        video: null,
-                        videoName: null
+                        video: "DRAGON_AUV_VIDEO_URL", // Replace with your actual video URL or path
+                        videoName: "dragon_auv_demo.mp4",
+                        isGif: false,
+                        isHardCoded: true
                     },
                     {
                         id: 2,
@@ -845,8 +853,10 @@
                         category: "Multi-Agent Systems",
                         description: "Developed a decentralized multi-AUV tracking system using bearing-only measurements with port-starboard ambiguity. Implemented Bernoulli Random Finite Set (RFS) framework with particle filter posterior approximation for robust target tracking under ambiguous and noisy detections.",
                         technologies: ["Particle Filters", "RFS", "Multi-Agent Systems", "Python", "Probabilistic Tracking"],
-                        video: null,
-                        videoName: null
+                        video: "MULTI_AUV_VIDEO_URL", // Replace with your actual video URL or path
+                        videoName: "multi_auv_tracking.gif",
+                        isGif: true,
+                        isHardCoded: true
                     },
                     {
                         id: 3,
@@ -854,8 +864,10 @@
                         category: "Underwater Perception",
                         description: "Engineered a robust 3D sonar change detection pipeline for sea floor monitoring. Integrated decision-level fusion of segmentation outputs with probabilistic Octree-based occupancy mapping for environmental awareness and underwater terrain mapping.",
                         technologies: ["3D Sonar", "Octree Mapping", "Point Cloud Processing", "Segmentation", "Decision Fusion"],
-                        video: null,
-                        videoName: null
+                        video: "SONAR_PIPELINE_VIDEO_URL", // Replace with your actual video URL or path
+                        videoName: "sonar_change_detection.mp4",
+                        isGif: false,
+                        isHardCoded: true
                     },
                     {
                         id: 4,
@@ -863,8 +875,10 @@
                         category: "Navigation & Path Planning",
                         description: "Designed Artificial Potential Field and D* algorithms for GPS waypoint navigation through cluttered environments. Implemented Extended Kalman Filter for fusing sonar, DVL, and IMU data to enhance localization accuracy in GPS-denied environments.",
                         technologies: ["D* Algorithm", "Artificial Potential Fields", "Extended Kalman Filter", "Sensor Fusion", "Path Planning"],
-                        video: null,
-                        videoName: null
+                        video: "ROVER_NAV_VIDEO_URL", // Replace with your actual video URL or path
+                        videoName: "rover_navigation.gif",
+                        isGif: true,
+                        isHardCoded: true
                     },
                     {
                         id: 5,
@@ -872,8 +886,10 @@
                         category: "Computer Vision",
                         description: "Developed ground segmentation and obstacle detection module from LiDAR and stereo-fused point clouds. System functions reliably in low-visibility environments like fog or rain, with Homotopy-Class-based navigation reducing planning time by 50%.",
                         technologies: ["LiDAR", "Point Cloud Processing", "PCL", "Stereo Vision", "Homotopy Navigation", "Real-time Processing"],
-                        video: null,
-                        videoName: null
+                        video: "LIDAR_SEGMENTATION_VIDEO_URL", // Replace with your actual video URL or path
+                        videoName: "lidar_segmentation.mp4",
+                        isGif: false,
+                        isHardCoded: true
                     },
                     {
                         id: 6,
@@ -881,8 +897,10 @@
                         category: "Deep Learning",
                         description: "Implemented StyleGAN2-based feature morphing pipeline combined with pix2pixHD for image-to-image translation. Trained on synthetic paired datasets for advanced computer vision applications and realistic image generation.",
                         technologies: ["StyleGAN2", "pix2pixHD", "Deep Learning", "Image Translation", "Synthetic Data", "Python"],
-                        video: null,
-                        videoName: null
+                        video: "STYLEGAN_VIDEO_URL", // Replace with your actual video URL or path
+                        videoName: "stylegan_morphing.gif",
+                        isGif: true,
+                        isHardCoded: true
                     }
                 );
                 renderProjects();
