@@ -794,8 +794,8 @@
                     <div class="project-video">
                         ${project.video ? 
                             (project.isGif ? 
-                                `<img src="${project.video}" alt="${project.title}" style="width: 100%; height: 100%; object-fit: cover; border-radius: 10px;">` :
-                                `<video controls autoplay muted loop>
+                                `<img src="${project.video}" alt="${project.title}" style="width: 100%; height: 100%; object-fit: cover; border-radius: 10px;" onerror="this.parentElement.innerHTML='❌ GIF not found: ${project.videoName}<br><small>Check file path and name</small>';">` :
+                                `<video controls autoplay muted loop onerror="this.parentElement.innerHTML='❌ Video not found: ${project.videoName}<br><small>Check file path and name</small>';">
                                     <source src="${project.video}" type="video/mp4">
                                     Your browser does not support the video tag.
                                 </video>`
@@ -822,6 +822,7 @@
                         ` : `
                             <span style="font-size: 0.8rem; color: #667eea; font-weight: 600;">
                                 🔒 Hard-coded Project
+                                ${devMode ? `<br><small style="color: #999;">Path: ${project.video}</small>` : ''}
                             </span>
                         `}
                     </div>
@@ -842,7 +843,7 @@
                         category: "Autonomous Underwater Vehicles",
                         description: "Led end-to-end development of a custom-built underwater vehicle for acoustic tracking of marine targets. Designed and integrated onboard electronics, hydrophones, power systems, and waterproofed housings. Developed custom firmware for pressure sensors and thrusters with ROS-based software architecture.",
                         technologies: ["ROS", "C++", "Python", "Underwater Electronics", "Acoustic Processing", "Custom Firmware"],
-                        video: "./assets/videos/dragon_auv_demo.gif", // Updated to GIF
+                        video: "assets/videos/dragon_auv_demo.gif", // Alternative path without ./
                         videoName: "dragon_auv_demo.gif",
                         isGif: true, // Changed to true
                         isHardCoded: true
