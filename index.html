@@ -1,912 +1,681 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Robotics Engineer Portfolio</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Vinay Naidu — Robotics Engineer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0b0d10;
+      --bg-elev: #11151b;
+      --panel: #121821;
+      --card: #141b24;
+      --text: #f1f5f9;
+      --muted: #a9b3c4;
+      --brand: #5b9cff; /* primary accent */
+      --brand-2: #3dd4c2; /* secondary accent */
+      --ring: rgba(91,156,255,0.45);
+      --border: rgba(255,255,255,0.08);
+      --success: #2ecc71;
+      --danger: #ff6b6b;
+      --shadow: 0 10px 30px rgba(0,0,0,.45);
+      --radius-xl: 18px;
+      --radius-lg: 14px;
+      --radius-md: 12px;
+    }
 
-        body {
-            font-family: 'Arial', sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-        }
+    /* Light mode (toggleable) */
+    .light {
+      --bg: #f7fafc;
+      --bg-elev: #ffffff;
+      --panel: #ffffff;
+      --card: #ffffff;
+      --text: #0f172a;
+      --muted: #475569;
+      --brand: #2b6cb0;
+      --brand-2: #0ea5a4;
+      --ring: rgba(43,108,176,0.2);
+      --border: rgba(2,8,23,0.08);
+      --shadow: 0 14px 30px rgba(2,8,23,.08);
+    }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      margin: 0;
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      color: var(--text);
+      background: radial-gradient(1200px 600px at 80% -10%, rgba(91,156,255,.12), transparent),
+                  radial-gradient(900px 400px at -10% 120%, rgba(61,212,194,.10), transparent),
+                  var(--bg);
+      line-height: 1.6;
+    }
 
-        header {
-            text-align: center;
-            padding: 40px 0;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            margin-bottom: 30px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
+    .page {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 24px;
+    }
 
-        header h1 {
-            font-size: 3rem;
-            color: white;
-            margin-bottom: 10px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-        }
+    /* Header */
+    .hero {
+      position: relative;
+      background: linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.0)), var(--panel);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-xl);
+      padding: 48px 28px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      isolation: isolate;
+    }
+    .hero::after { /* soft glow stripe */
+      content: "";
+      position: absolute;
+      inset: -1px;
+      background: conic-gradient(from 120deg at 70% 0%, rgba(91,156,255,.25), rgba(61,212,194,.2), transparent 40%);
+      filter: blur(40px);
+      z-index: -1;
+      pointer-events: none;
+    }
+    .hero-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .avatar {
+      width: 64px; height: 64px;
+      border-radius: 14px;
+      background: linear-gradient(145deg, var(--brand), var(--brand-2));
+      display: grid; place-items: center;
+      font-family: "JetBrains Mono", monospace;
+      color: #0b0d10;
+      font-weight: 800; font-size: 22px;
+      box-shadow: 0 8px 20px rgba(91,156,255,.35);
+    }
+    h1 {
+      margin: 0;
+      font-size: clamp(26px, 3.2vw, 38px);
+      letter-spacing: -0.02em;
+    }
+    .subtitle { color: var(--muted); margin-top: 6px; }
 
-        header p {
-            font-size: 1.2rem;
-            color: rgba(255, 255, 255, 0.9);
-        }
+    /* Top navigation */
+    .nav {
+      display: flex; gap: 8px; flex-wrap: wrap;
+    }
+    .tab {
+      appearance: none; border: 1px solid var(--border);
+      background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.01));
+      color: var(--text);
+      padding: 10px 14px; border-radius: 999px; cursor: pointer;
+      font-weight: 600; font-size: 14px; letter-spacing: .02em;
+      transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+    }
+    .tab[aria-selected="true"] {
+      border-color: transparent;
+      background: linear-gradient(135deg, var(--brand), var(--brand-2));
+      color: #0b0d10;
+      box-shadow: 0 10px 18px rgba(91,156,255,.35);
+    }
+    .tab:focus-visible { outline: 3px solid var(--ring); outline-offset: 2px; }
 
-        .nav-tabs {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 30px;
-            gap: 10px;
-        }
+    /* Theme + Dev toggles */
+    .controls { display: flex; gap: 10px; align-items: center; }
+    .ghost {
+      background: transparent; border: 1px dashed var(--border);
+      color: var(--muted); padding: 8px 12px; border-radius: 999px;
+      cursor: pointer; font-weight: 600; font-size: 13px;
+    }
 
-        .nav-tab {
-            padding: 15px 30px;
-            background: rgba(255, 255, 255, 0.1);
-            color: white;
-            border: none;
-            border-radius: 50px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-size: 1rem;
-            font-weight: 500;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
+    /* Sections */
+    .sections { margin-top: 22px; }
+    .section {
+      display: none;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-xl);
+      padding: 28px;
+      box-shadow: var(--shadow);
+      animation: fadeUp .35s ease both;
+    }
+    .section.active { display: block; }
+    @keyframes fadeUp { from { opacity:.0; translate: 0 8px; } to { opacity:1; translate: 0 0; } }
 
-        .nav-tab:hover {
-            background: rgba(255, 255, 255, 0.2);
-            transform: translateY(-2px);
-        }
+    .section h2 {
+      margin: 0 0 14px; font-size: clamp(20px, 2.2vw, 28px);
+      letter-spacing: -0.01em;
+    }
+    .lead { color: var(--muted); font-size: 15px; }
 
-        .nav-tab.active {
-            background: rgba(255, 255, 255, 0.3);
-            transform: translateY(-2px);
-        }
+    /* About */
+    .about p { margin: 0 0 14px; }
 
-        .content-section {
-            display: none;
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 20px;
-            padding: 40px;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-        }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 18px;
+    }
+    .col-4 { grid-column: span 4; }
+    .col-6 { grid-column: span 6; }
+    .col-12 { grid-column: 1 / -1; }
+    @media (max-width: 960px) { .col-4, .col-6 { grid-column: 1/-1; } }
 
-        .content-section.active {
-            display: block;
-            animation: fadeIn 0.5s ease-in-out;
-        }
+    .card {
+      background: linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.0)), var(--panel);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 18px;
+      transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease;
+    }
+    .card:hover { transform: translateY(-3px); border-color: rgba(255,255,255,.14); box-shadow: var(--shadow); }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+    .card h3 { margin: 0 0 10px; font-size: 15px; color: var(--muted); letter-spacing: .12em; text-transform: uppercase; }
+    .skills { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+    .skills li { padding: 8px 10px; border:1px solid var(--border); border-radius: 10px; background: var(--bg-elev); }
 
-        .upload-section {
-            background: #f8f9fa;
-            padding: 30px;
-            border-radius: 15px;
-            margin-bottom: 30px;
-            border: 2px dashed #ddd;
-            transition: all 0.3s ease;
-        }
+    /* Projects */
+    .projects-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 18px; }
+    .project {
+      display: flex; flex-direction: column; gap: 12px;
+    }
+    .media {
+      aspect-ratio: 16/9; border-radius: 12px; overflow: hidden;
+      background: #0c1117; border: 1px solid var(--border);
+    }
+    .media video, .media img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .badge { display: inline-block; padding: 4px 10px; border-radius: 999px; font-weight: 700; font-size: 12px; letter-spacing: .06em; background: rgba(91,156,255,.15); color: var(--text); border:1px solid var(--border); }
+    .proj-title { margin: 6px 0 6px; font-size: 18px; letter-spacing: -.01em; }
+    .proj-desc { color: var(--muted); font-size: 14px; }
+    .tech { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
+    .chip { border:1px solid var(--border); border-radius: 999px; padding: 6px 10px; font-size: 12px; background: var(--bg-elev); color: var(--muted); }
 
-        .upload-section:hover {
-            border-color: #667eea;
-            background: #f0f2ff;
-        }
+    .proj-actions { display: flex; gap: 8px; margin-top: 6px; }
+    .btn {
+      appearance: none; border: none; cursor: pointer; font-weight: 700; letter-spacing: .02em;
+      padding: 10px 14px; border-radius: 10px; transition: transform .15s ease, box-shadow .15s ease, opacity .2s ease;
+    }
+    .btn.primary { background: linear-gradient(135deg, var(--brand), var(--brand-2)); color: #0b0d10; box-shadow: 0 8px 18px rgba(91,156,255,.35); }
+    .btn.danger { background: linear-gradient(135deg, #ff7a7a, #ff5252); color: #0b0d10; }
+    .btn.ghost { background: transparent; border:1px solid var(--border); color: var(--text); }
+    .btn:active { transform: translateY(1px); }
 
-        .upload-area {
-            text-align: center;
-            padding: 40px 20px;
-            cursor: pointer;
-            border-radius: 10px;
-            transition: all 0.3s ease;
-        }
+    /* Upload form */
+    .upload {
+      display: grid; gap: 14px; max-width: 860px;
+    }
+    label { font-weight: 700; font-size: 13px; letter-spacing: .08em; color: var(--muted); text-transform: uppercase; }
+    input[type="text"], select, textarea { width: 100%; padding: 12px 14px; border-radius: 10px; border:1px solid var(--border); background: var(--bg-elev); color: var(--text); font: inherit; }
+    textarea { min-height: 120px; resize: vertical; }
+    .drop {
+      display: grid; place-items: center; text-align: center; padding: 26px; border: 1.5px dashed var(--border); background: var(--bg-elev); border-radius: 12px; cursor: pointer; color: var(--muted);
+    }
+    .hint { font-size: 12px; color: var(--muted); }
 
-        .upload-area:hover {
-            background: rgba(102, 126, 234, 0.05);
-        }
+    /* Contact */
+    .contact {
+      display: grid; gap: 10px; max-width: 780px; margin: 0 auto;
+      text-align: center;
+    }
+    .contact-item { display: flex; gap: 10px; justify-content: center; align-items: center; color: var(--muted); }
+    .contact-item:hover { color: var(--text); }
 
-        .upload-icon {
-            font-size: 4rem;
-            color: #667eea;
-            margin-bottom: 20px;
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 600;
-            color: #333;
-        }
-
-        .form-group input,
-        .form-group textarea,
-        .form-group select {
-            width: 100%;
-            padding: 12px;
-            border: 2px solid #e1e5e9;
-            border-radius: 8px;
-            font-size: 1rem;
-            transition: border-color 0.3s ease;
-        }
-
-        .form-group input:focus,
-        .form-group textarea:focus,
-        .form-group select:focus {
-            outline: none;
-            border-color: #667eea;
-            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
-        }
-
-        .form-group textarea {
-            height: 120px;
-            resize: vertical;
-        }
-
-        .btn {
-            background: linear-gradient(45deg, #667eea, #764ba2);
-            color: white;
-            padding: 12px 30px;
-            border: none;
-            border-radius: 25px;
-            cursor: pointer;
-            font-size: 1rem;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
-        }
-
-        .btn:active {
-            transform: translateY(0);
-        }
-
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 30px;
-            margin-top: 30px;
-        }
-
-        .project-card {
-            background: white;
-            border-radius: 15px;
-            padding: 25px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            transition: all 0.3s ease;
-            border: 1px solid #e1e5e9;
-        }
-
-        .project-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
-        }
-
-        .project-video {
-            width: 100%;
-            height: 200px;
-            background: #f8f9fa;
-            border-radius: 10px;
-            margin-bottom: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #666;
-            font-size: 1.1rem;
-            border: 1px solid #e1e5e9;
-            overflow: hidden;
-        }
-
-        .project-video video {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 10px;
-        }
-
-        .project-video img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 10px;
-        }
-
-        .project-title {
-            font-size: 1.4rem;
-            font-weight: 700;
-            margin-bottom: 10px;
-            color: #333;
-        }
-
-        .project-category {
-            display: inline-block;
-            background: linear-gradient(45deg, #667eea, #764ba2);
-            color: white;
-            padding: 4px 12px;
-            border-radius: 15px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            margin-bottom: 15px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .project-description {
-            color: #666;
-            line-height: 1.6;
-            margin-bottom: 15px;
-        }
-
-        .project-tech {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin-top: 15px;
-        }
-
-        .tech-tag {
-            background: #f8f9fa;
-            color: #333;
-            padding: 4px 10px;
-            border-radius: 12px;
-            font-size: 0.8rem;
-            border: 1px solid #e1e5e9;
-        }
-
-        .about-content {
-            line-height: 1.8;
-            font-size: 1.1rem;
-            color: #444;
-        }
-
-        .skills-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            margin-top: 30px;
-        }
-
-        .skill-category {
-            background: #f8f9fa;
-            padding: 25px;
-            border-radius: 15px;
-            border: 1px solid #e1e5e9;
-        }
-
-        .skill-category h3 {
-            color: #333;
-            margin-bottom: 15px;
-            font-size: 1.2rem;
-        }
-
-        .skill-list {
-            list-style: none;
-        }
-
-        .skill-list li {
-            padding: 5px 0;
-            color: #666;
-        }
-
-        .contact-info {
-            background: #f8f9fa;
-            padding: 30px;
-            border-radius: 15px;
-            text-align: center;
-            border: 1px solid #e1e5e9;
-        }
-
-        .contact-info h3 {
-            color: #333;
-            margin-bottom: 20px;
-        }
-
-        .contact-info p {
-            color: #666;
-            margin-bottom: 10px;
-            font-size: 1.1rem;
-        }
-
-        .hidden {
-            display: none !important;
-        }
-
-        @media (max-width: 768px) {
-            .container {
-                padding: 10px;
-            }
-            
-            header h1 {
-                font-size: 2rem;
-            }
-            
-            .nav-tabs {
-                flex-wrap: wrap;
-            }
-            
-            .nav-tab {
-                padding: 10px 20px;
-                font-size: 0.9rem;
-            }
-            
-            .content-section {
-                padding: 20px;
-            }
-            
-            .projects-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
+    /* Utility */
+    .hidden { display: none !important; }
+    .mt-20 { margin-top: 20px; }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <header>
+  <div class="page">
+    <header class="hero" role="banner">
+      <div class="hero-top">
+        <div class="brand" aria-label="Site brand">
+          <div class="avatar" aria-hidden="true">VN</div>
+          <div>
             <h1>Vinay Naidu</h1>
-            <p>Robotics Engineer & Autonomous Systems Specialist</p>
-        </header>
-
-        <div class="nav-tabs">
-            <button class="nav-tab active" onclick="showSection('about')">About</button>
-            <button class="nav-tab" onclick="showSection('projects')">Projects</button>
-            <button class="nav-tab hidden" id="uploadTab" onclick="showSection('upload')">Add Project</button>
-            <button class="nav-tab" onclick="showSection('contact')">Contact</button>
+            <div class="subtitle">Autonomous Systems • Underwater Robotics • AI Engineering</div>
+          </div>
         </div>
-
-        <!-- Dev Mode Toggle (hidden by default) -->
-        <div id="devModeToggle" class="hidden" style="position: fixed; top: 20px; right: 20px; z-index: 1000;">
-            <button onclick="toggleDevMode()" style="background: rgba(0,0,0,0.7); color: white; border: none; padding: 8px 12px; border-radius: 20px; cursor: pointer; font-size: 0.8rem;">
-                🔧 Dev Mode: <span id="devStatus">OFF</span>
-            </button>
+        <div class="controls">
+          <button id="themeBtn" class="ghost" aria-pressed="false" title="Toggle theme">🌗 Theme</button>
+          <button id="devToggleBtn" class="ghost" title="Toggle developer mode">🛠️ Dev</button>
         </div>
+      </div>
+      <nav class="nav" aria-label="Primary">
+        <button class="tab" data-target="about" aria-selected="true">About</button>
+        <button class="tab" data-target="projects">Projects</button>
+        <button id="uploadTab" class="tab hidden" data-target="upload">Add Project</button>
+        <button class="tab" data-target="contact">Contact</button>
+      </nav>
+    </header>
 
-        <!-- About Section -->
-        <div id="about" class="content-section active">
-            <h2>About Me</h2>
-            <div class="about-content">
-                <p>Welcome to my portfolio! I'm a passionate robotics engineer currently pursuing my Master's in Computer Engineering at Virginia Tech with a 3.83 GPA. My expertise spans autonomous underwater vehicles (AUVs), multi-robot systems, and advanced perception algorithms.</p>
-                
-                <p>Currently working as a Graduate Research Assistant at Virginia Tech's Center for Marine Autonomy and Robotics, I lead the development of the Dragon AUV for acoustic tracking of marine targets. My work focuses on cutting-edge underwater robotics, decentralized multi-agent systems, and robust perception in challenging environments.</p>
+    <main class="sections" id="sections">
+      <!-- About -->
+      <section id="about" class="section active about" aria-labelledby="about-title">
+        <h2 id="about-title">System Overview</h2>
+        <p class="lead">Advanced robotics engineer specializing in autonomous underwater vehicles and intelligent systems. Currently pursuing Master's in Computer Engineering at Virginia Tech with focus on marine autonomy and multi-agent robotics.</p>
+        <p class="lead">Leading development of cutting-edge underwater robotics at Virginia Tech's Center for Marine Autonomy and Robotics. Expert in acoustic tracking, decentralized multi-agent systems, and robust perception algorithms for challenging environments.</p>
+        <p class="lead">Professional experience includes navigation algorithm development, sensor fusion systems, and real-time perception modules that enable autonomous operation in complex, GPS-denied environments.</p>
 
-                <p>With professional experience at Aerospace Engineers and IntRobotics, I've developed navigation algorithms, sensor fusion systems, and perception modules that enable robots to operate autonomously in complex, real-world scenarios.</p>
-            </div>
-
-            <div class="skills-grid">
-                <div class="skill-category">
-                    <h3>Programming Languages</h3>
-                    <ul class="skill-list">
-                        <li>Python</li>
-                        <li>C++</li>
-                        <li>Flutter/Dart</li>
-                        <li>HTML/CSS</li>
-                    </ul>
-                </div>
-                <div class="skill-category">
-                    <h3>Robotics Frameworks</h3>
-                    <ul class="skill-list">
-                        <li>ROS/ROS2</li>
-                        <li>MOOS-IVP</li>
-                        <li>FreeRTOS</li>
-                        <li>Gazebo Simulation</li>
-                        <li>PCL (Point Cloud Library)</li>
-                    </ul>
-                </div>
-                <div class="skill-category">
-                    <h3>Autonomous Systems</h3>
-                    <ul class="skill-list">
-                        <li>SLAM & Navigation</li>
-                        <li>Sensor Fusion (EKF)</li>
-                        <li>Path Planning (D*, APF)</li>
-                        <li>Multi-Agent Systems</li>
-                        <li>Underwater Robotics</li>
-                    </ul>
-                </div>
-                <div class="skill-category">
-                    <h3>AI/ML & Perception</h3>
-                    <ul class="skill-list">
-                        <li>Computer Vision</li>
-                        <li>Deep Learning (CNN)</li>
-                        <li>Point Cloud Processing</li>
-                        <li>Particle Filters</li>
-                        <li>StyleGAN2, pix2pixHD</li>
-                    </ul>
-                </div>
-                <div class="skill-category">
-                    <h3>Hardware Platforms</h3>
-                    <ul class="skill-list">
-                        <li>Jetson Nano/Xavier</li>
-                        <li>STM32F767Zi</li>
-                        <li>Raspberry Pi</li>
-                        <li>Odroid Microcontroller</li>
-                    </ul>
-                </div>
-                <div class="skill-category">
-                    <h3>Specialized Systems</h3>
-                    <ul class="skill-list">
-                        <li>Acoustic Tracking</li>
-                        <li>Underwater Electronics</li>
-                        <li>LiDAR Processing</li>
-                        <li>Sonar & DVL Integration</li>
-                        <li>Marine Vehicle Control</li>
-                    </ul>
-                </div>
-            </div>
+        <div class="grid mt-20" role="list">
+          <div class="card col-4" role="listitem">
+            <h3>Core Programming</h3>
+            <ul class="skills">
+              <li>Python</li>
+              <li>C++</li>
+              <li>Flutter/Dart</li>
+              <li>HTML/CSS</li>
+            </ul>
+          </div>
+          <div class="card col-4" role="listitem">
+            <h3>Robotics Frameworks</h3>
+            <ul class="skills">
+              <li>ROS/ROS2</li>
+              <li>MOOS-IVP</li>
+              <li>FreeRTOS</li>
+              <li>Gazebo Simulation</li>
+              <li>PCL (Point Cloud Library)</li>
+            </ul>
+          </div>
+          <div class="card col-4" role="listitem">
+            <h3>Autonomous Systems</h3>
+            <ul class="skills">
+              <li>SLAM & Navigation</li>
+              <li>Sensor Fusion (EKF)</li>
+              <li>Path Planning (D*, APF)</li>
+              <li>Multi-Agent Systems</li>
+              <li>Underwater Robotics</li>
+            </ul>
+          </div>
+          <div class="card col-4" role="listitem">
+            <h3>AI/ML & Perception</h3>
+            <ul class="skills">
+              <li>Computer Vision</li>
+              <li>Deep Learning (CNN)</li>
+              <li>Point Cloud Processing</li>
+              <li>Particle Filters</li>
+              <li>StyleGAN2, pix2pixHD</li>
+            </ul>
+          </div>
+          <div class="card col-4" role="listitem">
+            <h3>Hardware Platforms</h3>
+            <ul class="skills">
+              <li>Jetson Nano/Xavier</li>
+              <li>STM32F767Zi</li>
+              <li>Raspberry Pi</li>
+              <li>Odroid Microcontroller</li>
+            </ul>
+          </div>
+          <div class="card col-4" role="listitem">
+            <h3>Specialized Systems</h3>
+            <ul class="skills">
+              <li>Acoustic Tracking</li>
+              <li>Underwater Electronics</li>
+              <li>LiDAR Processing</li>
+              <li>Sonar & DVL Integration</li>
+              <li>Marine Vehicle Control</li>
+            </ul>
+          </div>
         </div>
+      </section>
 
-        <!-- Projects Section -->
-        <div id="projects" class="content-section">
-            <h2>My Projects</h2>
-            <div class="projects-grid" id="projectsGrid">
-                <!-- Projects will be dynamically added here -->
-            </div>
+      <!-- Projects -->
+      <section id="projects" class="section" aria-labelledby="projects-title">
+        <h2 id="projects-title">Project Archive</h2>
+        <div id="projectsGrid" class="projects-grid" aria-live="polite"></div>
+      </section>
+
+      <!-- Upload -->
+      <section id="upload" class="section" aria-labelledby="upload-title">
+        <h2 id="upload-title">Deploy New Project</h2>
+        <form id="projectForm" class="upload" autocomplete="off">
+          <input type="hidden" id="editingProjectId" />
+
+          <div>
+            <label for="projectTitle">Project Designation</label>
+            <input id="projectTitle" type="text" required placeholder="e.g., Dragon AUV — Acoustic Tracking" />
+          </div>
+          <div>
+            <label for="projectCategory">System Category</label>
+            <select id="projectCategory" required>
+              <option value="">Select Category</option>
+              <option>Autonomous Underwater Vehicles</option>
+              <option>Multi-Agent Systems</option>
+              <option>Computer Vision</option>
+              <option>Navigation & Path Planning</option>
+              <option>Sensor Fusion</option>
+              <option>Deep Learning</option>
+              <option>Point Cloud Processing</option>
+              <option>Underwater Perception</option>
+              <option>Acoustic Systems</option>
+              <option>Research</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div>
+            <label for="projectVideo">Media Upload</label>
+            <div class="drop" id="dropZone" role="button" tabindex="0" aria-controls="projectVideo">Drop file here or click to upload</div>
+            <input id="projectVideo" type="file" accept="video/*,image/gif" class="hidden" />
+            <div id="currentVideo" class="hint hidden">🎬 Current media: <span id="currentVideoName"></span> <button type="button" id="clearVideo" class="ghost" style="margin-left:8px">Remove</button></div>
+          </div>
+          <div>
+            <label for="projectDescription">Technical Documentation</label>
+            <textarea id="projectDescription" placeholder="Describe system architecture, algorithms implemented, challenges solved, and performance metrics..." required></textarea>
+          </div>
+          <div>
+            <label for="projectTech">Technology Stack</label>
+            <input id="projectTech" type="text" placeholder="Python, ROS, OpenCV, TensorFlow, Arduino..." />
+          </div>
+          <div style="display:flex; gap:10px;">
+            <button class="btn primary" type="submit" id="submitBtn">Deploy Project</button>
+            <button class="btn ghost" type="button" id="cancelBtn" style="display:none">Cancel</button>
+          </div>
+        </form>
+      </section>
+
+      <!-- Contact -->
+      <section id="contact" class="section" aria-labelledby="contact-title">
+        <h2 id="contact-title">Contact Protocol</h2>
+        <div class="contact">
+          <div class="contact-item">📧 <a href="mailto:vinaynaidu13@vt.edu">vinaynaidu13@vt.edu</a></div>
+          <div class="contact-item">📱 <a href="tel:+12407288230">240-728-8230</a></div>
+          <div class="contact-item">🔗 <a href="https://linkedin.com/in/vinay-naidu" target="_blank" rel="noreferrer noopener">linkedin.com/in/vinay-naidu</a></div>
+          <div class="contact-item">🐙 <a href="https://github.com/alucard1311" target="_blank" rel="noreferrer noopener">github.com/alucard1311</a></div>
+          <div class="contact-item">📍 Blacksburg, VA</div>
+          <div class="contact-item">🎓 Virginia Tech — MS Computer Engineering</div>
         </div>
+      </section>
+    </main>
+  </div>
 
-        <!-- Upload Section -->
-        <div id="upload" class="content-section">
-            <h2 id="uploadTitle">Add New Project</h2>
-            <div class="upload-section">
-                <form id="projectForm">
-                    <input type="hidden" id="editingProjectId" value="">
-                    
-                    <div class="form-group">
-                        <label for="projectTitle">Project Title</label>
-                        <input type="text" id="projectTitle" name="projectTitle" required>
-                    </div>
+  <script>
+    // State
+    let devMode = false;
+    let editingProject = null;
+    let projects = [];
 
-                    <div class="form-group">
-                        <label for="projectCategory">Category</label>
-                        <select id="projectCategory" name="projectCategory" required>
-                            <option value="">Select Category</option>
-                            <option value="Autonomous Underwater Vehicles">Autonomous Underwater Vehicles</option>
-                            <option value="Multi-Agent Systems">Multi-Agent Systems</option>
-                            <option value="Computer Vision">Computer Vision</option>
-                            <option value="Navigation & Path Planning">Navigation & Path Planning</option>
-                            <option value="Sensor Fusion">Sensor Fusion</option>
-                            <option value="Deep Learning">Deep Learning</option>
-                            <option value="Point Cloud Processing">Point Cloud Processing</option>
-                            <option value="Underwater Perception">Underwater Perception</option>
-                            <option value="Acoustic Systems">Acoustic Systems</option>
-                            <option value="Research">Research</option>
-                            <option value="Other">Other</option>
-                        </select>
-                    </div>
+    // Helpers
+    const qs = (s, r=document) => r.querySelector(s);
+    const qsa = (s, r=document) => Array.from(r.querySelectorAll(s));
 
-                    <div class="form-group">
-                        <label for="projectVideo">Project Video/GIF</label>
-                        <div class="upload-area" onclick="document.getElementById('projectVideo').click()">
-                            <div class="upload-icon">🎬</div>
-                            <p>Click to upload project video or GIF</p>
-                            <p style="font-size: 0.9rem; color: #666;">Supported formats: MP4, WebM, MOV, GIF</p>
-                        </div>
-                        <input type="file" id="projectVideo" name="projectVideo" accept="video/*,image/gif" style="display: none;">
-                        <div id="currentVideo" class="hidden" style="margin-top: 10px; padding: 10px; background: #f0f8ff; border-radius: 8px; border: 1px solid #667eea;">
-                            <p style="margin: 0; color: #333; font-size: 0.9rem;">
-                                🎬 Current media: <span id="currentVideoName"></span>
-                                <button type="button" onclick="clearCurrentVideo()" style="margin-left: 10px; background: none; border: none; color: #e74c3c; cursor: pointer; font-size: 0.8rem;">✕ Remove</button>
-                            </p>
-                        </div>
-                    </div>
+    // Tabs
+    qsa('.tab').forEach(tab => {
+      tab.addEventListener('click', () => switchSection(tab.dataset.target, tab));
+    });
 
-                    <div class="form-group">
-                        <label for="projectDescription">Project Description</label>
-                        <textarea id="projectDescription" name="projectDescription" placeholder="Describe your project, the challenges you solved, technologies used, and outcomes achieved..." required></textarea>
-                    </div>
+    function switchSection(id, tabBtn) {
+      qsa('.section').forEach(s => s.classList.remove('active'));
+      qsa('.tab').forEach(t => t.setAttribute('aria-selected','false'));
+      qs('#' + id).classList.add('active');
+      tabBtn.setAttribute('aria-selected','true');
+    }
 
-                    <div class="form-group">
-                        <label for="projectTech">Technologies Used (comma-separated)</label>
-                        <input type="text" id="projectTech" name="projectTech" placeholder="Python, ROS, OpenCV, TensorFlow, Arduino...">
-                    </div>
+    // Theme toggle
+    const themeBtn = qs('#themeBtn');
+    themeBtn.addEventListener('click', () => {
+      document.body.classList.toggle('light');
+      const isLight = document.body.classList.contains('light');
+      themeBtn.setAttribute('aria-pressed', isLight ? 'true' : 'false');
+      localStorage.setItem('vn-theme', isLight ? 'light' : 'dark');
+    });
 
-                    <div style="display: flex; gap: 10px;">
-                        <button type="submit" class="btn" id="submitBtn">Add Project</button>
-                        <button type="button" class="btn" id="cancelBtn" onclick="cancelEdit()" style="background: linear-gradient(45deg, #95a5a6, #7f8c8d); display: none;">Cancel</button>
-                    </div>
-                </form>
-            </div>
-        </div>
+    // Persist theme
+    (function() {
+      const saved = localStorage.getItem('vn-theme');
+      if (saved === 'light') { document.body.classList.add('light'); themeBtn.setAttribute('aria-pressed','true'); }
+    })();
 
-        <!-- Contact Section -->
-        <div id="contact" class="content-section">
-            <h2>Contact Me</h2>
-            <div class="contact-info">
-                <h3>Let's Connect</h3>
-                <p>📧 vinaynaidu13@vt.edu</p>
-                <p>📱 240-728-8230</p>
-                <p>🔗 linkedin.com/in/vinay-naidu</p>
-                <p>🐙 github.com/alucard1311</p>
-                <p>📍 Blacksburg, VA</p>
-                <p>🎓 Virginia Tech - MS Computer Engineering</p>
-            </div>
-        </div>
-    </div>
+    // Dev toggle (button + keyboard)
+    const uploadTab = qs('#uploadTab');
+    const devToggleBtn = qs('#devToggleBtn');
+    devToggleBtn.addEventListener('click', toggleDevMode);
+    document.addEventListener('keydown', (e) => {
+      if (e.ctrlKey && e.shiftKey && e.code === 'KeyD') {
+        e.preventDefault(); toggleDevMode();
+      }
+    });
 
-    <script>
-        // Dev mode state
-        let devMode = false;
-        let editingProject = null;
+    function toggleDevMode() {
+      devMode = !devMode;
+      uploadTab.classList.toggle('hidden', !devMode);
+      renderProjects();
+    }
 
-        // Navigation functionality
-        function showSection(sectionName) {
-            // Hide all sections
-            const sections = document.querySelectorAll('.content-section');
-            sections.forEach(section => section.classList.remove('active'));
+    // Upload interactions
+    const projectForm = qs('#projectForm');
+    const editingIdInput = qs('#editingProjectId');
+    const drop = qs('#dropZone');
+    const fileInput = qs('#projectVideo');
+    const currentVideo = qs('#currentVideo');
+    const currentVideoName = qs('#currentVideoName');
+    const clearVideoBtn = qs('#clearVideo');
+    const cancelBtn = qs('#cancelBtn');
+    const submitBtn = qs('#submitBtn');
 
-            // Remove active class from all tabs
-            const tabs = document.querySelectorAll('.nav-tab');
-            tabs.forEach(tab => tab.classList.remove('active'));
+    drop.addEventListener('click', () => fileInput.click());
+    drop.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); fileInput.click(); } });
+    ;['dragenter','dragover'].forEach(evt => drop.addEventListener(evt, (e)=>{ e.preventDefault(); drop.style.borderColor = 'var(--brand)'; }));
+    ;['dragleave','drop'].forEach(evt => drop.addEventListener(evt, (e)=>{ e.preventDefault(); drop.style.borderColor = 'var(--border)'; }));
+    drop.addEventListener('drop', (e)=>{ const f = e.dataTransfer.files?.[0]; if (f) handleFile(f); });
 
-            // Show selected section
-            document.getElementById(sectionName).classList.add('active');
+    fileInput.addEventListener('change', (e) => { const f = e.target.files[0]; if (f) handleFile(f); });
 
-            // Add active class to clicked tab
-            event.target.classList.add('active');
+    function handleFile(file) {
+      currentVideo.classList.remove('hidden');
+      currentVideoName.textContent = file.name;
+      currentVideo.dataset.blobUrl = URL.createObjectURL(file);
+      currentVideo.dataset.isGif = file.type === 'image/gif' ? '1' : '0';
+    }
+
+    clearVideoBtn.addEventListener('click', ()=>{
+      currentVideo.classList.add('hidden');
+      currentVideoName.textContent = '';
+      delete currentVideo.dataset.blobUrl;
+      delete currentVideo.dataset.isGif;
+      fileInput.value = '';
+    });
+
+    cancelBtn.addEventListener('click', resetForm);
+
+    projectForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const title = qs('#projectTitle').value.trim();
+      const category = qs('#projectCategory').value;
+      const description = qs('#projectDescription').value.trim();
+      const technologies = qs('#projectTech').value.split(',').map(t => t.trim()).filter(Boolean);
+
+      const mediaUrl = currentVideo.dataset.blobUrl || null;
+      const isGif = currentVideo.dataset.isGif === '1';
+
+      const payload = { title, category, description, technologies };
+      if (editingIdInput.value) {
+        const id = Number(editingIdInput.value);
+        const idx = projects.findIndex(p => p.id === id);
+        if (idx !== -1) {
+          projects[idx] = {
+            ...projects[idx],
+            ...payload,
+            video: mediaUrl ?? projects[idx].video,
+            videoName: currentVideoName.textContent || projects[idx].videoName,
+            isGif: mediaUrl ? isGif : projects[idx].isGif
+          };
         }
-
-        // Edit project functionality
-        function editProject(projectId) {
-            const project = projects.find(p => p.id === projectId);
-            if (!project) return;
-
-            editingProject = project;
-            
-            // Fill form with existing data
-            document.getElementById('projectTitle').value = project.title;
-            document.getElementById('projectCategory').value = project.category;
-            document.getElementById('projectDescription').value = project.description;
-            document.getElementById('projectTech').value = project.technologies.join(', ');
-            document.getElementById('editingProjectId').value = projectId;
-            
-            // Update form appearance for editing
-            document.getElementById('uploadTitle').textContent = 'Edit Project';
-            document.getElementById('submitBtn').textContent = 'Update Project';
-            document.getElementById('cancelBtn').style.display = 'inline-block';
-            
-            // Show current video if exists
-            if (project.video) {
-                document.getElementById('currentVideo').classList.remove('hidden');
-                document.getElementById('currentVideoName').textContent = project.videoName || 'Current video';
-            }
-            
-            // Switch to upload section
-            showSection('upload');
-            document.querySelectorAll('.nav-tab').forEach(tab => tab.classList.remove('active'));
-            document.getElementById('uploadTab').classList.add('active');
-        }
-
-        // Cancel edit functionality
-        function cancelEdit() {
-            editingProject = null;
-            document.getElementById('projectForm').reset();
-            document.getElementById('editingProjectId').value = '';
-            document.getElementById('uploadTitle').textContent = 'Add New Project';
-            document.getElementById('submitBtn').textContent = 'Add Project';
-            document.getElementById('cancelBtn').style.display = 'none';
-            document.getElementById('currentVideo').classList.add('hidden');
-            
-            // Reset upload area
-            document.querySelector('.upload-area').innerHTML = `
-                <div class="upload-icon">🎬</div>
-                <p>Click to upload project video or GIF</p>
-                <p style="font-size: 0.9rem; color: #666;">Supported formats: MP4, WebM, MOV, GIF</p>
-            `;
-        }
-
-        // Clear current video
-        function clearCurrentVideo() {
-            document.getElementById('currentVideo').classList.add('hidden');
-            if (editingProject) {
-                editingProject.video = null;
-                editingProject.videoName = null;
-            }
-        }
-
-        // Delete project functionality
-        function deleteProject(projectId) {
-            if (confirm('Are you sure you want to delete this project? This action cannot be undone.')) {
-                projects = projects.filter(p => p.id !== projectId);
-                renderProjects();
-            }
-        }
-
-        // Dev mode toggle functionality
-        function toggleDevMode() {
-            devMode = !devMode;
-            const uploadTab = document.getElementById('uploadTab');
-            const devStatus = document.getElementById('devStatus');
-            
-            if (devMode) {
-                uploadTab.classList.remove('hidden');
-                devStatus.textContent = 'ON';
-                devStatus.parentElement.style.background = 'rgba(102, 126, 234, 0.8)';
-            } else {
-                uploadTab.classList.add('hidden');
-                devStatus.textContent = 'OFF';
-                devStatus.parentElement.style.background = 'rgba(0,0,0,0.7)';
-                
-                // If currently on upload section, switch to projects
-                if (document.getElementById('upload').classList.contains('active')) {
-                    showSection('projects');
-                    document.querySelectorAll('.nav-tab')[1].classList.add('active');
-                }
-            }
-            
-            // Re-render projects to show/hide edit buttons
-            renderProjects();
-        }
-
-        // Secret key combination to enable dev mode toggle (Ctrl+Shift+D)
-        document.addEventListener('keydown', function(e) {
-            if (e.ctrlKey && e.shiftKey && e.code === 'KeyD') {
-                e.preventDefault();
-                const devToggle = document.getElementById('devModeToggle');
-                devToggle.classList.toggle('hidden');
-                
-                if (!devToggle.classList.contains('hidden')) {
-                    // Show a subtle notification
-                    const notification = document.createElement('div');
-                    notification.textContent = 'Dev mode toggle enabled';
-                    notification.style.cssText = `
-                        position: fixed; top: 70px; right: 20px; z-index: 1001;
-                        background: rgba(102, 126, 234, 0.9); color: white;
-                        padding: 8px 16px; border-radius: 20px; font-size: 0.8rem;
-                        animation: fadeInOut 3s ease-in-out forwards;
-                    `;
-                    document.body.appendChild(notification);
-                    
-                    // Add fadeInOut animation
-                    if (!document.querySelector('#fadeInOutStyle')) {
-                        const style = document.createElement('style');
-                        style.id = 'fadeInOutStyle';
-                        style.textContent = `
-                            @keyframes fadeInOut {
-                                0% { opacity: 0; transform: translateX(100%); }
-                                20% { opacity: 1; transform: translateX(0); }
-                                80% { opacity: 1; transform: translateX(0); }
-                                100% { opacity: 0; transform: translateX(100%); }
-                            }
-                        `;
-                        document.head.appendChild(style);
-                    }
-                    
-                    setTimeout(() => notification.remove(), 3000);
-                }
-            }
+        alert('✅ Project updated');
+      } else {
+        projects.push({
+          id: Date.now(),
+          ...payload,
+          video: mediaUrl,
+          videoName: currentVideoName.textContent || null,
+          isGif: !!isGif,
+          isHardCoded: false
         });
+        alert('✅ Project deployed');
+      }
 
-        // Projects storage
-        let projects = [];
+      renderProjects();
+      resetForm();
+      // jump to projects
+      const projTab = qsa('.tab').find(t => t.dataset.target === 'projects');
+      switchSection('projects', projTab);
+    });
 
-        // File upload handling
-        document.getElementById('projectVideo').addEventListener('change', function(e) {
-            const file = e.target.files[0];
-            if (file) {
-                const uploadArea = document.querySelector('.upload-area');
-                const isGif = file.type === 'image/gif';
-                const fileType = isGif ? 'GIF' : 'Video';
-                
-                uploadArea.innerHTML = `
-                    <div class="upload-icon">✅</div>
-                    <p>${fileType} selected: ${file.name}</p>
-                    <p style="font-size: 0.9rem; color: #666;">Click to change ${fileType.toLowerCase()}</p>
-                `;
-            }
-        });
+    function resetForm() {
+      editingProject = null;
+      projectForm.reset();
+      editingIdInput.value = '';
+      qs('#upload-title').textContent = 'Deploy New Project';
+      submitBtn.textContent = 'Deploy Project';
+      cancelBtn.style.display = 'none';
+      clearVideoBtn.click();
+    }
 
-        // Form submission
-        document.getElementById('projectForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const formData = new FormData(e.target);
-            const mediaFile = formData.get('projectVideo');
-            const editingId = formData.get('editingProjectId');
-            
-            const projectData = {
-                title: formData.get('projectTitle'),
-                category: formData.get('projectCategory'),
-                description: formData.get('projectDescription'),
-                technologies: formData.get('projectTech').split(',').map(tech => tech.trim()).filter(tech => tech),
-            };
+    function editProject(id) {
+      const p = projects.find(x => x.id === id);
+      if (!p) return;
+      editingProject = p;
+      qs('#projectTitle').value = p.title;
+      qs('#projectCategory').value = p.category;
+      qs('#projectDescription').value = p.description;
+      qs('#projectTech').value = p.technologies.join(', ');
+      editingIdInput.value = String(id);
 
-            if (editingId) {
-                // Update existing project
-                const projectIndex = projects.findIndex(p => p.id == editingId);
-                if (projectIndex !== -1) {
-                    // Keep existing media if no new media uploaded
-                    if (mediaFile && mediaFile.size > 0) {
-                        projectData.video = URL.createObjectURL(mediaFile);
-                        projectData.videoName = mediaFile.name;
-                        projectData.isGif = mediaFile.type === 'image/gif';
-                    } else if (editingProject) {
-                        projectData.video = editingProject.video;
-                        projectData.videoName = editingProject.videoName;
-                        projectData.isGif = editingProject.isGif;
-                    }
-                    
-                    projects[projectIndex] = { ...projects[projectIndex], ...projectData };
-                }
-                alert('Project updated successfully!');
-            } else {
-                // Add new project
-                const project = {
-                    id: Date.now(),
-                    ...projectData,
-                    video: mediaFile && mediaFile.size > 0 ? URL.createObjectURL(mediaFile) : null,
-                    videoName: mediaFile && mediaFile.size > 0 ? mediaFile.name : null,
-                    isGif: mediaFile && mediaFile.size > 0 ? mediaFile.type === 'image/gif' : false
-                };
-                projects.push(project);
-                alert('Project added successfully!');
-            }
+      if (p.video) {
+        currentVideo.classList.remove('hidden');
+        currentVideoName.textContent = p.videoName || 'Current media';
+        currentVideo.dataset.blobUrl = p.video; // keep existing object url
+        currentVideo.dataset.isGif = p.isGif ? '1' : '0';
+      }
 
-            renderProjects();
-            cancelEdit(); // Reset form
-            
-            // Switch to projects view
-            showSection('projects');
-            document.querySelectorAll('.nav-tab').forEach(tab => tab.classList.remove('active'));
-            document.querySelectorAll('.nav-tab')[1].classList.add('active');
-        });
+      qs('#upload-title').textContent = 'Modify Project';
+      submitBtn.textContent = 'Update Project';
+      cancelBtn.style.display = 'inline-block';
 
-        // Render projects
-        function renderProjects() {
-            const projectsGrid = document.getElementById('projectsGrid');
-            
-            if (projects.length === 0) {
-                projectsGrid.innerHTML = `
-                    <div style="grid-column: 1/-1; text-align: center; padding: 60px 20px; color: #666;">
-                        <div style="font-size: 4rem; margin-bottom: 20px;">🤖</div>
-                        <h3>No projects yet</h3>
-                        <p>Upload your first robotics project to get started!</p>
-                    </div>
-                `;
-                return;
-            }
+      const upTab = qsa('.tab').find(t => t.dataset.target === 'upload');
+      if (!devMode) toggleDevMode();
+      switchSection('upload', upTab);
+    }
 
-            projectsGrid.innerHTML = projects.map(project => `
-                <div class="project-card">
-                    <div class="project-video">
-                        ${project.video ? 
-                            (project.isGif ? 
-                                `<img src="${project.video}" alt="${project.title}" style="width: 100%; height: 100%; object-fit: cover; border-radius: 10px;" onerror="this.parentElement.innerHTML='❌ GIF not found: ${project.videoName}<br><small>Check file path and name</small>';">` :
-                                `<video controls autoplay muted loop onerror="this.parentElement.innerHTML='❌ Video not found: ${project.videoName}<br><small>Check file path and name</small>';">
-                                    <source src="${project.video}" type="video/mp4">
-                                    Your browser does not support the video tag.
-                                </video>`
-                            ) : 
-                            'No media uploaded'
-                        }
-                    </div>
-                    <div class="project-category">${project.category}</div>
-                    <h3 class="project-title">${project.title}</h3>
-                    <p class="project-description">${project.description}</p>
-                    ${project.technologies.length > 0 ? `
-                        <div class="project-tech">
-                            ${project.technologies.map(tech => `<span class="tech-tag">${tech}</span>`).join('')}
-                        </div>
-                    ` : ''}
-                    <div class="project-controls ${devMode ? '' : 'hidden'}" style="margin-top: 15px; padding-top: 15px; border-top: 1px solid #e1e5e9;">
-                        ${!project.isHardCoded ? `
-                            <button onclick="editProject(${project.id})" class="btn" style="font-size: 0.8rem; padding: 8px 16px; margin-right: 10px;">
-                                ✏️ Edit
-                            </button>
-                            <button onclick="deleteProject(${project.id})" class="btn" style="font-size: 0.8rem; padding: 8px 16px; background: linear-gradient(45deg, #e74c3c, #c0392b);">
-                                🗑️ Delete
-                            </button>
-                        ` : `
-                            <span style="font-size: 0.8rem; color: #667eea; font-weight: 600;">
-                                🔒 Hard-coded Project
-                                ${devMode ? `<br><small style="color: #999;">Path: ${project.video}</small>` : ''}
-                            </span>
-                        `}
-                    </div>
-                </div>
-            `).join('');
-        }
-
-        // Initialize with empty projects view
+    function deleteProject(id) {
+      if (confirm('Delete project? This cannot be undone.')) {
+        projects = projects.filter(p => p.id !== id);
         renderProjects();
+      }
+    }
 
-        // Add some real projects based on resume with hard-coded videos
-        setTimeout(() => {
-            if (projects.length === 0) {
-                projects.push(
-                    {
-                        id: 1,
-                        title: "Dragon AUV - Acoustic Tracking System",
-                        category: "Autonomous Underwater Vehicles",
-                        description: "Led end-to-end development of a custom-built underwater vehicle for acoustic tracking of marine targets. Designed and integrated onboard electronics, hydrophones, power systems, and waterproofed housings. Developed custom firmware for pressure sensors and thrusters with ROS-based software architecture.",
-                        technologies: ["ROS", "C++", "Python", "Underwater Electronics", "Acoustic Processing", "Custom Firmware"],
-                        video: "assets/dragon_auv_demo.gif", // Updated to match your folder structure
-                        videoName: "dragon_auv_demo.gif",
-                        isGif: true, // Changed to true
-                        isHardCoded: true
-                    },
-                    {
-                        id: 2,
-                        title: "Decentralized Multi-AUV Tracking System",
-                        category: "Multi-Agent Systems",
-                        description: "Developed a decentralized multi-AUV tracking system using bearing-only measurements with port-starboard ambiguity. Implemented Bernoulli Random Finite Set (RFS) framework with particle filter posterior approximation for robust target tracking under ambiguous and noisy detections.",
-                        technologies: ["Particle Filters", "RFS", "Multi-Agent Systems", "Python", "Probabilistic Tracking"],
-                        video: "./assets/multi_auv_tracking.gif", // Replace with your actual GIF file
-                        videoName: "multi_auv_tracking.gif",
-                        isGif: true,
-                        isHardCoded: true
-                    },
-                    {
-                        id: 3,
-                        title: "3D Sonar Change Detection Pipeline",
-                        category: "Underwater Perception",
-                        description: "Engineered a robust 3D sonar change detection pipeline for sea floor monitoring. Integrated decision-level fusion of segmentation outputs with probabilistic Octree-based occupancy mapping for environmental awareness and underwater terrain mapping.",
-                        technologies: ["3D Sonar", "Octree Mapping", "Point Cloud Processing", "Segmentation", "Decision Fusion"],
-                        video: "./assets/videos/sonar_change_detection.mp4", // Replace with your actual video file
-                        videoName: "sonar_change_detection.mp4",
-                        isGif: false,
-                        isHardCoded: true
-                    },
-                    {
-                        id: 4,
-                        title: "Autonomous Rover Navigation System",
-                        category: "Navigation & Path Planning",
-                        description: "Designed Artificial Potential Field and D* algorithms for GPS waypoint navigation through cluttered environments. Implemented Extended Kalman Filter for fusing sonar, DVL, and IMU data to enhance localization accuracy in GPS-denied environments.",
-                        technologies: ["D* Algorithm", "Artificial Potential Fields", "Extended Kalman Filter", "Sensor Fusion", "Path Planning"],
-                        video: "./assets/videos/rover_navigation.gif", // Replace with your actual GIF file
-                        videoName: "rover_navigation.gif",
-                        isGif: true,
-                        isHardCoded: true
-                    },
-                    {
-                        id: 5,
-                        title: "LiDAR Ground Segmentation & Obstacle Detection",
-                        category: "Computer Vision",
-                        description: "Developed ground segmentation and obstacle detection module from LiDAR and stereo-fused point clouds. System functions reliably in low-visibility environments like fog or rain, with Homotopy-Class-based navigation reducing planning time by 50%.",
-                        technologies: ["LiDAR", "Point Cloud Processing", "PCL", "Stereo Vision", "Homotopy Navigation", "Real-time Processing"],
-                        video: "./assets/videos/lidar_segmentation.mp4", // Replace with your actual video file
-                        videoName: "lidar_segmentation.mp4",
-                        isGif: false,
-                        isHardCoded: true
-                    },
-                    {
-                        id: 6,
-                        title: "StyleGAN2 Feature Morphing Pipeline",
-                        category: "Deep Learning",
-                        description: "Implemented StyleGAN2-based feature morphing pipeline combined with pix2pixHD for image-to-image translation. Trained on synthetic paired datasets for advanced computer vision applications and realistic image generation.",
-                        technologies: ["StyleGAN2", "pix2pixHD", "Deep Learning", "Image Translation", "Synthetic Data", "Python"],
-                        video: "./assets/videos/stylegan_morphing.gif", // Replace with your actual GIF file
-                        videoName: "stylegan_morphing.gif",
-                        isGif: true,
-                        isHardCoded: true
-                    }
-                );
-                renderProjects();
-            }
-        }, 1000);
-    </script>
+    function renderProjects() {
+      const grid = qs('#projectsGrid');
+      if (!projects.length) {
+        grid.innerHTML = `<div class="card" style="grid-column:1/-1; text-align:center; padding:40px; color:var(--muted)">No projects yet. Use <b>Add Project</b> to deploy your first showcase.</div>`;
+        return;
+      }
+
+      grid.innerHTML = projects.map(p => `
+        <article class="project card" aria-label="${p.title}">
+          <div class="media">
+            ${p.video ? (
+              p.isGif
+                ? `<img src="${p.video}" alt="${p.title}" onerror="this.closest('.media').innerHTML='❌ Media not found'">`
+                : `<video controls autoplay muted loop onerror="this.closest('.media').innerHTML='❌ Media not found'"><source src="${p.video}" type="video/mp4"></video>`
+            ) : `<div class="hint" style="display:grid;place-items:center;height:100%">No media</div>`}
+          </div>
+          <span class="badge">${p.category}</span>
+          <h3 class="proj-title">${p.title}</h3>
+          <p class="proj-desc">${p.description}</p>
+          ${p.technologies?.length ? `<div class="tech">${p.technologies.map(t=>`<span class="chip">${t}</span>`).join('')}</div>` : ''}
+          <div class="proj-actions ${devMode ? '' : 'hidden'}">
+            ${p.isHardCoded ? `<span class="hint">🔒 Protected</span>` : `
+              <button class="btn ghost" onclick="editProject(${p.id})">✏️ Edit</button>
+              <button class="btn danger" onclick="deleteProject(${p.id})">🗑️ Delete</button>
+            `}
+          </div>
+        </article>
+      `).join('');
+    }
+
+    // Seed hard-coded projects
+    function seed() {
+      if (projects.length) return;
+      projects = [
+        {
+          id: 1,
+          title: "Dragon AUV — Acoustic Tracking System",
+          category: "Autonomous Underwater Vehicles",
+          description: "Led end-to-end development of a custom-built underwater vehicle for acoustic tracking of marine targets. Designed and integrated onboard electronics, hydrophones, power systems, and waterproofed housings. Developed custom firmware for pressure sensors and thrusters with ROS-based software architecture.",
+          technologies: ["ROS","C++","Python","Underwater Electronics","Acoustic Processing","Custom Firmware"],
+          video: "assets/dragon_auv_demo.gif",
+          videoName: "dragon_auv_demo.gif",
+          isGif: true,
+          isHardCoded: true
+        },
+        {
+          id: 2,
+          title: "Decentralized Multi-AUV Tracking System",
+          category: "Multi-Agent Systems",
+          description: "Developed a decentralized multi-AUV tracking system using bearing-only measurements with port-starboard ambiguity. Implemented Bernoulli Random Finite Set (RFS) framework with particle filter posterior approximation for robust target tracking under ambiguous and noisy detections.",
+          technologies: ["Particle Filters","RFS","Multi-Agent Systems","Python","Probabilistic Tracking"],
+          video: "assets/multi_auv_tracking.gif",
+          videoName: "multi_auv_tracking.gif",
+          isGif: true,
+          isHardCoded: true
+        },
+        {
+          id: 3,
+          title: "3D Sonar Change Detection Pipeline",
+          category: "Underwater Perception",
+          description: "Engineered a robust 3D sonar change detection pipeline for sea floor monitoring. Integrated decision-level fusion of segmentation outputs with probabilistic Octree-based occupancy mapping for environmental awareness and underwater terrain mapping.",
+          technologies: ["3D Sonar","Octree Mapping","Point Cloud Processing","Segmentation","Decision Fusion"],
+          video: "assets/sonar_change_detection.mp4",
+          videoName: "sonar_change_detection.mp4",
+          isGif: false,
+          isHardCoded: true
+        },
+        {
+          id: 4,
+          title: "Autonomous Rover Navigation System",
+          category: "Navigation & Path Planning",
+          description: "Designed Artificial Potential Field and D* algorithms for GPS waypoint navigation through cluttered environments. Implemented Extended Kalman Filter for fusing sonar, DVL, and IMU data to enhance localization accuracy in GPS-denied environments.",
+          technologies: ["D* Algorithm","Artificial Potential Fields","Extended Kalman Filter","Sensor Fusion","Path Planning"],
+          video: "assets/rover_navigation.gif",
+          videoName: "rover_navigation.gif",
+          isGif: true,
+          isHardCoded: true
+        },
+        {
+          id: 5,
+          title: "LiDAR Ground Segmentation & Obstacle Detection",
+          category: "Computer Vision",
+          description: "Developed ground segmentation and obstacle detection module from LiDAR and stereo-fused point clouds. System functions reliably in low-visibility environments like fog or rain, with Homotopy-Class-based navigation reducing planning time by 50%.",
+          technologies: ["LiDAR","Point Cloud Processing","PCL","Stereo Vision","Homotopy Navigation","Real-time Processing"],
+          video: "assets/lidar_segmentation.mp4",
+          videoName: "lidar_segmentation.mp4",
+          isGif: false,
+          isHardCoded: true
+        },
+        {
+          id: 6,
+          title: "StyleGAN2 Feature Morphing Pipeline",
+          category: "Deep Learning",
+          description: "Implemented StyleGAN2-based feature morphing pipeline combined with pix2pixHD for image-to-image translation. Trained on synthetic paired datasets for advanced computer vision applications and realistic image generation.",
+          technologies: ["StyleGAN2","pix2pixHD","Deep Learning","Image Translation","Synthetic Data","Python"],
+          video: "assets/stylegan_morphing.gif",
+          videoName: "stylegan_morphing.gif",
+          isGif: true,
+          isHardCoded: true
+        }
+      ];
+      renderProjects();
+    }
+
+    seed();
+  </script>
 </body>
 </html>
