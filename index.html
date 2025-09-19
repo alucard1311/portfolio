@@ -183,7 +183,7 @@
     .skills li { padding: 8px 10px; border:1px solid var(--border); border-radius: 10px; background: var(--bg-elev); }
 
     /* Projects */
-    .projects-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 18px; }
+    .projects-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 18px; }
     .project {
       display: flex; flex-direction: column; gap: 12px;
     }
@@ -192,7 +192,43 @@
       background: #0c1117; border: 1px solid var(--border);
     }
     .media video, .media img { width: 100%; height: 100%; object-fit: cover; display: block; }
-    .badge { display: inline-block; padding: 4px 10px; border-radius: 999px; font-weight: 700; font-size: 12px; letter-spacing: .06em; background: rgba(91,156,255,.15); color: var(--text); border:1px solid var(--border); }
+    
+    .project-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 12px;
+    }
+    
+    .badge { 
+      display: inline-block; padding: 4px 10px; border-radius: 999px; 
+      font-weight: 700; font-size: 12px; letter-spacing: .06em; 
+      background: rgba(91,156,255,.15); color: var(--text); border:1px solid var(--border); 
+    }
+    
+    .github-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 12px;
+      background: rgba(255,255,255,.05);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      color: var(--text);
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 600;
+      transition: all .2s ease;
+      flex-shrink: 0;
+    }
+    
+    .github-link:hover {
+      background: rgba(255,255,255,.1);
+      border-color: var(--brand);
+      color: var(--brand);
+      transform: translateY(-1px);
+    }
+    
     .proj-title { margin: 6px 0 6px; font-size: 18px; letter-spacing: -.01em; }
     .proj-desc { color: var(--muted); font-size: 14px; }
     .tech { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
@@ -213,7 +249,7 @@
       display: grid; gap: 14px; max-width: 860px;
     }
     label { font-weight: 700; font-size: 13px; letter-spacing: .08em; color: var(--muted); text-transform: uppercase; }
-    input[type="text"], select, textarea { width: 100%; padding: 12px 14px; border-radius: 10px; border:1px solid var(--border); background: var(--bg-elev); color: var(--text); font: inherit; }
+    input[type="text"], input[type="url"], select, textarea { width: 100%; padding: 12px 14px; border-radius: 10px; border:1px solid var(--border); background: var(--bg-elev); color: var(--text); font: inherit; }
     textarea { min-height: 120px; resize: vertical; }
     .drop {
       display: grid; place-items: center; text-align: center; padding: 26px; border: 1.5px dashed var(--border); background: var(--bg-elev); border-radius: 12px; cursor: pointer; color: var(--muted);
@@ -361,6 +397,10 @@
             </select>
           </div>
           <div>
+            <label for="projectGithub">GitHub Repository URL</label>
+            <input id="projectGithub" type="url" placeholder="https://github.com/username/repository" />
+          </div>
+          <div>
             <label for="projectVideo">Media Upload</label>
             <div class="drop" id="dropZone" role="button" tabindex="0" aria-controls="projectVideo">Drop file here or click to upload</div>
             <input id="projectVideo" type="file" accept="video/*,image/gif" class="hidden" />
@@ -491,11 +531,12 @@
       const category = qs('#projectCategory').value;
       const description = qs('#projectDescription').value.trim();
       const technologies = qs('#projectTech').value.split(',').map(t => t.trim()).filter(Boolean);
+      const githubUrl = qs('#projectGithub').value.trim();
 
       const mediaUrl = currentVideo.dataset.blobUrl || null;
       const isGif = currentVideo.dataset.isGif === '1';
 
-      const payload = { title, category, description, technologies };
+      const payload = { title, category, description, technologies, githubUrl };
       if (editingIdInput.value) {
         const id = Number(editingIdInput.value);
         const idx = projects.findIndex(p => p.id === id);
@@ -546,6 +587,7 @@
       qs('#projectCategory').value = p.category;
       qs('#projectDescription').value = p.description;
       qs('#projectTech').value = p.technologies.join(', ');
+      qs('#projectGithub').value = p.githubUrl || '';
       editingIdInput.value = String(id);
 
       if (p.video) {
@@ -587,7 +629,15 @@
                 : `<video controls autoplay muted loop onerror="this.closest('.media').innerHTML='❌ Media not found'"><source src="${p.video}" type="video/mp4"></video>`
             ) : `<div class="hint" style="display:grid;place-items:center;height:100%">No media</div>`}
           </div>
-          <span class="badge">${p.category}</span>
+          <div class="project-header">
+            <span class="badge">${p.category}</span>
+            ${p.githubUrl ? `<a href="${p.githubUrl}" target="_blank" rel="noopener noreferrer" class="github-link">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+              </svg>
+              GitHub
+            </a>` : ''}
+          </div>
           <h3 class="proj-title">${p.title}</h3>
           <p class="proj-desc">${p.description}</p>
           ${p.technologies?.length ? `<div class="tech">${p.technologies.map(t=>`<span class="chip">${t}</span>`).join('')}</div>` : ''}
@@ -614,7 +664,8 @@
           video: "assets/dragon_auv_demo.gif",
           videoName: "dragon_auv_demo.gif",
           isGif: true,
-          isHardCoded: true
+          isHardCoded: true,
+          githubUrl: "https://github.com/alucard1311/dragon_auv"
         },
         {
           id: 2,
@@ -625,7 +676,8 @@
           video: "assets/multi_auv_tracking.gif",
           videoName: "multi_auv_tracking.gif",
           isGif: true,
-          isHardCoded: true
+          isHardCoded: true,
+          githubUrl: "https://github.com/alucard1311/multi-auv-tracking"
         },
         {
           id: 3,
@@ -636,29 +688,32 @@
           video: "assets/sonar_change_detection.gif",
           videoName: "sonar_change_detection.gif",
           isGif: true,
-          isHardCoded: true
+          isHardCoded: true,
+          githubUrl: "https://github.com/alucard1311/ism_plume_detection"
         },
         {
           id: 4,
           title: "ROS2 Neural AStar",
           category: "Navigation & Path Planning",
-          description: "An attempt to create the first ROS2 plugin for a data driven machine learning approach to search-based planning.This plugin will consist of a modified encoder decoder network trained on costmaps generated from indoor robot simulations using ROS2's navigation2 stack.",
-          technologies: ["Neural A*, ROS2"],
+          description: "An attempt to create the first ROS2 plugin for a data driven machine learning approach to search-based planning. This plugin will consist of a modified encoder decoder network trained on costmaps generated from indoor robot simulations using ROS2's navigation2 stack.",
+          technologies: ["Neural A*", "ROS2"],
           video: "assets/astar.gif",
           videoName: "astar.gif",
           isGif: true,
-          isHardCoded: true
+          isHardCoded: true,
+          githubUrl: "https://github.com/alucard1311/ROS2-Nueral-AStar"
         },
         {
           id: 5,
           title: "ENU-ROS Transformations package",
           category: "Navigation & Path Planning",
-          description: "An ENU tangential plane ROS Transformations package for navigation stacks and planners utility that solves curvature and ellipsoid behavior-based inaccuracies caused by planning in linearised standard geodetic data..",
+          description: "An ENU tangential plane ROS Transformations package for navigation stacks and planners utility that solves curvature and ellipsoid behavior-based inaccuracies caused by planning in linearised standard geodetic data.",
           technologies: ["GPS Waypoint","NED","Path Planning"],
           video: "assets/enu-tf.gif",
           videoName: "enu-tf.gif",
           isGif: true,
-          isHardCoded: true
+          isHardCoded: true,
+          githubUrl: "http://github.com/alucard1311/enu-ros-tf"
         },
         {
           id: 6,
@@ -669,7 +724,8 @@
           video: "assets/stylegan_morphing.gif",
           videoName: "stylegan_morphing.gif",
           isGif: true,
-          isHardCoded: true
+          isHardCoded: true,
+          githubUrl: "https://github.com/alucard1311/FeedFwd-GAN2-Distillation"
         }
       ];
       renderProjects();
