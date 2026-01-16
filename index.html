@@ -180,6 +180,30 @@
       justify-content: center;
       position: relative;
       padding-top: 100px;
+      overflow: hidden;
+      /* Ensure video doesn't spill */
+    }
+
+    .hero-video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -2;
+      opacity: 0.6;
+      /* Adjust visibility */
+    }
+
+    .hero-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(180deg, rgba(2, 22, 43, 0.3) 0%, var(--ocean-deep) 100%);
+      z-index: -1;
     }
 
     .hero h1 {
@@ -189,6 +213,8 @@
       background: linear-gradient(135deg, #fff 0%, var(--biolum) 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
+      text-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+      /* Boost contrast */
     }
 
     .hero-subtitle {
@@ -635,7 +661,13 @@
   </div>
 
   <main class="container">
+    <!-- Hero -->
     <section class="hero">
+      <video class="hero-video" autoplay loop muted playsinline poster="assets/cover.png">
+        <source src="assets/cover.mp4" type="video/mp4">
+      </video>
+      <div class="hero-overlay"></div>
+
       <div>
         <div style="color: var(--biolum); font-weight: 600; letter-spacing: 2px;">PORTFOLIO</div>
         <h1>Vinay Naidu</h1>
