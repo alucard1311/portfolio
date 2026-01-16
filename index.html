@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap"
     rel="stylesheet">
   <style>
     :root {
@@ -61,7 +61,8 @@
 
     body {
       margin: 0;
-      font-family: Inter, system-ui, -apple-system, sans-serif;
+      font-family: 'Outfit', system-ui, -apple-system, sans-serif;
+      /* Clean geometric font */
       color: var(--text);
       background: linear-gradient(180deg, var(--ocean-deep) 0%, var(--ocean-mid) 100%);
       line-height: 1.6;
@@ -92,11 +93,16 @@
       z-index: -9;
     }
 
-    /* Layout */
+    /* Layout (Left Aligned) */
     .container {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 0 24px;
+      max-width: 1400px;
+      /* Allow more width */
+      margin: 0;
+      padding: 0;
+      margin-left: 8vw;
+      /* Fixed left anchor */
+      margin-right: 5vw;
+      /* Breathing room on right */
     }
 
     /* Fixed Header / Controls */
@@ -150,12 +156,23 @@
 
     /* Hero Section */
     .hero {
-      min-height: 90vh;
+      min-height: 80vh;
       display: flex;
       flex-direction: column;
       justify-content: center;
       position: relative;
-      padding-top: 100px;
+      padding-top: 0;
+      overflow: hidden;
+
+      /* Boxed Cover Styling - Left Aligned */
+      max-width: 1100px;
+      margin: 100px 0 60px 0;
+      /* Left aligned, no auto margin */
+      border-radius: 24px;
+      padding: 40px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+    }
+
     }
 
     .hero h1 {
