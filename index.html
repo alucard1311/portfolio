@@ -68,52 +68,28 @@
       overflow-x: hidden;
     }
 
-    /* Wave Background Animation */
-    .waves {
-      position: absolute;
+    /* Fixed Video Background */
+    .bg-video {
+      position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      z-index: -1;
-      overflow: hidden;
-      pointer-events: none;
+      object-fit: cover;
+      z-index: -10;
+      opacity: 0.5;
+      /* Subtle background */
     }
 
-    .wave {
-      position: absolute;
-      bottom: 0;
-      width: 200%;
+    .bg-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
       height: 100%;
-      background-repeat: repeat-x;
-      background-size: 50% 100%;
-      opacity: 0.1;
-      animation: waveMove 20s linear infinite;
-    }
-
-    .wave:nth-child(1) {
-      background-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1440 320" xmlns="http://www.w3.org/2000/svg"><path fill="%2341EAD4" d="M0,192L48,197.3C96,203,192,213,288,229.3C384,245,480,267,576,250.7C672,235,768,181,864,181.3C960,181,1056,235,1152,234.7C1248,235,1344,181,1392,154.7L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>');
-      z-index: 1;
-      bottom: -50px;
-      opacity: 0.2;
-    }
-
-    .wave:nth-child(2) {
-      background-image: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1440 320" xmlns="http://www.w3.org/2000/svg"><path fill="%230B3D66" d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,112C672,96,768,96,864,112C960,128,1056,160,1152,160C1248,160,1344,128,1392,112L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>');
-      z-index: 2;
-      bottom: -20px;
-      animation-duration: 25s;
-      opacity: 0.15;
-    }
-
-    @keyframes waveMove {
-      0% {
-        transform: translateX(0);
-      }
-
-      100% {
-        transform: translateX(-50%);
-      }
+      background: rgba(2, 22, 43, 0.7);
+      /* Darken video */
+      z-index: -9;
     }
 
     /* Layout */
@@ -180,30 +156,6 @@
       justify-content: center;
       position: relative;
       padding-top: 100px;
-      overflow: hidden;
-      /* Ensure video doesn't spill */
-    }
-
-    .hero-video {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      z-index: -2;
-      opacity: 0.6;
-      /* Adjust visibility */
-    }
-
-    .hero-overlay {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(180deg, rgba(2, 22, 43, 0.3) 0%, var(--ocean-deep) 100%);
-      z-index: -1;
     }
 
     .hero h1 {
@@ -647,10 +599,10 @@
 
 <body>
 
-  <div class="waves">
-    <div class="wave"></div>
-    <div class="wave"></div>
-  </div>
+  <video class="bg-video" autoplay loop muted playsinline poster="assets/cover.png">
+    <source src="assets/cover.mp4" type="video/mp4">
+  </video>
+  <div class="bg-overlay"></div>
 
   <!-- App Bar -->
   <div class="app-bar">
@@ -663,11 +615,6 @@
   <main class="container">
     <!-- Hero -->
     <section class="hero">
-      <video class="hero-video" autoplay loop muted playsinline poster="assets/cover.png">
-        <source src="assets/cover.mp4" type="video/mp4">
-      </video>
-      <div class="hero-overlay"></div>
-
       <div>
         <div style="color: var(--biolum); font-weight: 600; letter-spacing: 2px;">PORTFOLIO</div>
         <h1>Vinay Naidu</h1>
