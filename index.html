@@ -570,6 +570,41 @@
       margin-top: 40px;
     }
 
+    /* Vertical Timeline Flow (Sub-Journey) */
+    .timeline-flow {
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+      position: relative;
+      border-left: 2px solid var(--biolum-dim);
+      margin-left: 20px;
+      padding-left: 40px;
+    }
+
+    .timeline-flow .project-card {
+      position: relative;
+    }
+
+    .timeline-flow .project-card::before {
+      content: "";
+      position: absolute;
+      left: -49px;
+      top: 30px;
+      width: 16px;
+      height: 16px;
+      background: var(--ocean-deep);
+      border: 2px solid var(--biolum);
+      border-radius: 50%;
+      z-index: 2;
+    }
+
+    /* Connector line fix */
+    .timeline-flow::before {
+      display: none;
+    }
+
+    /* Override if needed */
+
     .social-links {
       display: flex;
       justify-content: center;
@@ -681,7 +716,7 @@
      * The 'Save' feature writes the current state of these arrays back into the HTML file.
      */
     let careerPhases = [
-      { id: 'aepl', year: '2022 — 2023', title: 'Aerospace Engineers Pvt. Ltd.', role: 'Robotics Software Developer (GNC)' },
+      { id: 'aepl', year: '2022 — 2023', title: 'Hyper Horizon <span style="font-size:0.6em; display:block; margin-top:4px; opacity:0.7; font-weight:400">formerly Aerospace Engineers Pvt. Ltd.</span>', role: 'Robotics Software Developer (GNC)' },
       { id: 'vt', year: '2023 — Present', title: 'Virginia Tech Center for Marine Autonomy', role: 'Graduate Research Assistant & MS Thesis' },
       { id: 'opensource', year: 'Keywords', title: 'Algorithms & Open Source', role: 'Deep Learning, ROS2, and Tools' }
     ];
@@ -689,10 +724,13 @@
     let projects = [
       { id: 'aepl-1', phase: 'aepl', title: "Underwater GNC Architecture", desc: "Developed end-to-end guidance, navigation, and control architecture for constrained underwater operations. Implemented global planning reducing compute by ~40%.", tech: ["C++", "ROS", "Control Theory"], github: "", media: null },
       { id: 'aepl-2', phase: 'aepl', title: "Sim-to-Real Validation Pipeline", desc: "Built repeatable sim-to-real validation tools. Created containerizable SITL/HITL-style regression scenarios to speed controller tuning.", tech: ["Docker", "Gazebo", "CI/CD"], github: "", media: null },
-      { id: 1, phase: 'vt', title: "Dragon AUV — Acoustic Tracking", desc: "Led development of custom underwater vehicle. Designed electronics, power systems, waterproof housings, and firmware.", tech: ["ROS", "C++", "Embedded"], media: "assets/dragon_auv_demo.gif", isGif: true, github: "https://github.com/alucard1311/dragon_auv" },
+
+      /* VT Sub-Journey Ordered (Latest First) */
       { id: 2, phase: 'vt', title: "Decentralized Multi-AUV Tracking", desc: "Thesis Work: Decentralized tracking using bearing-only measurements with port-starboard ambiguity using Bernoulli RFS filter.", tech: ["Particle Filters", "RFS", "Python"], media: "assets/multi_auv_tracking.gif", isGif: true, github: "https://github.com/alucard1311/multi-auv-tracking", featured: true },
-      { id: 3, phase: 'vt', title: "Methane Plume Segmentation", desc: "Engineered 3D sonar change detection pipeline. Integrated decision-level fusion with probabilistic Octree mapping.", tech: ["3D Sonar", "Octree", "Segmentation"], media: "assets/sonar_change_detection.gif", isGif: true, github: "https://github.com/alucard1311/ism_plume_detection" },
-      { id: 4, phase: 'opensource', title: "ROS2 Neural A*", desc: "First ROS2 plugin for data-driven search-based planning using modified encoder-decoder network.", tech: ["Neural A*", "ROS2", "PyTorch"], media: "assets/astar.gif", isGif: true, github: "https://github.com/alucard1311/ROS2-Nueral-AStar" },
+      { id: 1, phase: 'vt', title: "Dragon AUV — Acoustic Tracking", desc: "Led development of custom underwater vehicle. Designed electronics, power systems, waterproof housings, and firmware.", tech: ["ROS", "C++", "Embedded"], media: "assets/dragon_auv_demo.gif", isGif: true, github: "https://github.com/alucard1311/dragon_auv" },
+      { id: 4, phase: 'vt', title: "Methane Plume Segmentation (690 AUV)", desc: "Engineered 3D sonar change detection pipeline. Integrated decision-level fusion with probabilistic Octree mapping.", tech: ["3D Sonar", "Octree", "Segmentation"], media: "assets/sonar_change_detection.gif", isGif: true, github: "https://github.com/alucard1311/ism_plume_detection" },
+
+      { id: 404, phase: 'opensource', title: "ROS2 Neural A*", desc: "First ROS2 plugin for data-driven search-based planning using modified encoder-decoder network.", tech: ["Neural A*", "ROS2", "PyTorch"], media: "assets/astar.gif", isGif: true, github: "https://github.com/alucard1311/ROS2-Nueral-AStar" },
       { id: 5, phase: 'opensource', title: "ENU-ROS Transformations", desc: "ENU tangential plane ROS package solving curvature inaccuracies in linearised geodetic data planning.", tech: ["Geodesy", "ROS", "Planning"], media: "assets/enu-tf.gif", isGif: true, github: "http://github.com/alucard1311/enu-ros-tf" },
       { id: 6, phase: 'opensource', title: "StyleGAN2 Feature Morphing", desc: "StyleGAN2-based feature morphing pipeline combined with pix2pixHD for image-to-image translation.", tech: ["StyleGAN2", "Deep Learning"], media: "assets/stylegan_morphing.gif", isGif: true, github: "https://github.com/alucard1311/FeedFwd-GAN2-Distillation" }
     ];
@@ -709,6 +747,10 @@
         // 1. Create Phase Section
         const div = document.createElement('div');
         div.className = 'phase';
+
+        // Custom Layout Check
+        const gridClass = (ph.id === 'vt') ? 'timeline-flow' : 'project-grid';
+
         div.innerHTML = `
       <div class="phase-header">
         <div class="phase-controls">
@@ -719,7 +761,7 @@
         <h2 class="phase-title">${ph.title}</h2>
         <p class="phase-role">${ph.role}</p>
       </div>
-      <div class="project-grid" id="grid-${ph.id}"></div>
+      <div class="${gridClass}" id="grid-${ph.id}"></div>
       <div class="add-proj-btn" onclick="addProject('${ph.id}')">+ Add Project to ${ph.title}</div>
     `;
         root.appendChild(div);
