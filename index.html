@@ -193,7 +193,8 @@
     .scroll-indicator {
       position: absolute;
       bottom: 40px;
-      left: 50%;
+      /* Compensate for container's 8vw margin to center on screen */
+      left: calc(50vw - 8vw);
       transform: translateX(-50%);
       color: var(--text-dim);
       font-size: 14px;
@@ -646,7 +647,7 @@
 
 <body>
 
-  <video class="bg-video" autoplay loop muted playsinline poster="assets/cover.png">
+  <video class="bg-video" autoplay loop muted playsinline>
     <source src="assets/cover.mp4" type="video/mp4">
   </video>
   <div class="bg-overlay"></div>
