@@ -315,8 +315,9 @@
     /* Project Cards Grid Area */
     .project-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 24px;
+      /* Smaller min-width for more compact cards */
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
     }
 
     .project-card {
@@ -596,6 +597,8 @@
 
     .timeline-flow .project-card {
       position: relative;
+      max-width: 480px;
+      /* Reduced size based on feedback */
     }
 
     .timeline-flow .project-card::before {
