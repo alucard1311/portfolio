@@ -743,7 +743,7 @@
 
       /* VT Sub-Journey Ordered (Latest First) */
       { id: 2, phase: 'vt', title: "Decentralized Multi-AUV Tracking", desc: "Thesis Work: Decentralized tracking using bearing-only measurements with port-starboard ambiguity using Bernoulli RFS filter.", tech: ["Particle Filters", "RFS", "Python"], media: "assets/multi_auv_tracking.gif", isGif: true, github: "https://github.com/alucard1311/multi-auv-tracking", featured: true },
-      { id: 1, phase: 'vt', title: "Dragon AUV — Acoustic Tracking", desc: "Led development of custom underwater vehicle. Designed electronics, power systems, waterproof housings, and firmware.", tech: ["ROS", "C++", "Embedded"], media: "assets/dragon_auv_demo.gif", isGif: true, github: "https://github.com/alucard1311/dragon_auv" },
+      { id: 1, phase: 'vt', title: "Dragon AUV — Acoustic Tracking", desc: "Led development of custom underwater vehicle. Designed electronics, power systems, waterproof housings, and firmware.", tech: ["ROS", "C++", "Embedded"], media: "assets/DRAGON.MOV", isGif: false, github: "https://github.com/alucard1311/dragon_auv" },
       { id: 4, phase: 'vt', title: "Methane Plume Segmentation (690 AUV)", desc: "Engineered 3D sonar change detection pipeline. Integrated decision-level fusion with probabilistic Octree mapping.", tech: ["3D Sonar", "Octree", "Segmentation"], media: "assets/sonar_change_detection.gif", isGif: true, github: "https://github.com/alucard1311/ism_plume_detection" },
 
       { id: 404, phase: 'opensource', title: "ROS2 Neural A*", desc: "First ROS2 plugin for data-driven search-based planning using modified encoder-decoder network.", tech: ["Neural A*", "ROS2", "PyTorch"], media: "assets/astar.gif", isGif: true, github: "https://github.com/alucard1311/ROS2-Nueral-AStar" },
@@ -790,9 +790,12 @@
           const isFeatured = p.featured ? 'featured' : '';
           let mediaHtml = `<div class="media-wrapper" style="background:#02101f; display:grid; place-items:center;">No Media</div>`;
           if (p.media) {
-            mediaHtml = `<div class="media-wrapper"><img src="${p.media}" onerror="this.src=''"></div>`;
-            // Note: For simplicity, treating all media as IMG. Browsers handle GIFs/Base64 seamlessly in IMG tags.
-            // If a user uploads a video file, it won't play in IMG, but we focus on GIF/Images for code-free simplicity.
+            const isVideo = p.media.toLowerCase().endsWith('.mov') || p.media.toLowerCase().endsWith('.mp4');
+            if (isVideo) {
+              mediaHtml = `<div class="media-wrapper"><video src="${p.media}" autoplay loop muted playsinline></video></div>`;
+            } else {
+              mediaHtml = `<div class="media-wrapper"><img src="${p.media}" onerror="this.src=''"></div>`;
+            }
           }
 
           const card = document.createElement('article');
