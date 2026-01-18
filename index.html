@@ -312,60 +312,52 @@
       margin: 4px 0 0;
     }
 
-    /* Project Cards Grid Area */
+    /* Project Cards - Clean Horizontal Layout */
     .project-grid {
-      display: grid;
-      /* Smaller min-width for more compact cards */
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
     }
 
     .project-card {
-      background: var(--card-bg);
-      border: 1px solid var(--card-border);
-      backdrop-filter: blur(12px);
+      display: flex;
+      flex-direction: row;
+      background: transparent;
       border-radius: var(--radius-lg);
       overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+      transition: background 0.25s ease;
+      padding: 16px;
+      gap: 24px;
+      align-items: center;
     }
 
     .project-card:hover {
-      transform: translateY(-5px);
-      border-color: var(--biolum);
-      box-shadow: 0 10px 30px rgba(65, 234, 212, 0.15);
+      background: rgba(65, 234, 212, 0.05);
     }
 
     .project-card.featured {
-      grid-column: span 2;
-      display: grid;
-      grid-template-columns: 1.5fr 1fr;
+      /* Featured cards same layout, just slightly larger media */
     }
 
-    @media (max-width: 900px) {
-      .project-card.featured {
-        grid-column: span 1;
-        grid-template-columns: 1fr;
+    @media (max-width: 768px) {
+      .project-card {
+        flex-direction: column;
+        align-items: stretch;
       }
     }
 
     .media-wrapper {
-      position: relative;
-      aspect-ratio: 16/9;
-      background: #000;
+      flex-shrink: 0;
+      width: 280px;
+      aspect-ratio: 16/10;
+      background: rgba(0, 0, 0, 0.3);
+      border-radius: var(--radius-md);
       overflow: hidden;
     }
 
-    .project-card.featured .media-wrapper {
-      aspect-ratio: auto;
-      height: 100%;
-    }
-
-    @media (max-width: 900px) {
-      .project-card.featured .media-wrapper {
-        aspect-ratio: 16/9;
-        height: auto;
+    @media (max-width: 768px) {
+      .media-wrapper {
+        width: 100%;
       }
     }
 
@@ -377,61 +369,61 @@
     }
 
     .card-body {
-      padding: 24px;
+      flex: 1;
       display: flex;
       flex-direction: column;
-      gap: 12px;
-      flex: 1;
+      gap: 8px;
+      min-width: 0;
     }
 
     .card-header {
       display: flex;
       justify-content: space-between;
-      align-items: flex-start;
+      align-items: center;
+      gap: 12px;
     }
 
     .github-btn {
-      color: var(--text);
-      opacity: 0.7;
-      transition: opacity .2s;
+      color: var(--biolum);
+      font-size: 13px;
+      text-decoration: none;
+      opacity: 0.8;
+      transition: opacity 0.2s;
+      white-space: nowrap;
     }
 
     .github-btn:hover {
       opacity: 1;
-      color: var(--biolum);
     }
 
     .tech-stack {
       display: flex;
       flex-wrap: wrap;
-      gap: 6px;
-      margin-top: auto;
+      gap: 8px;
+      margin-top: 4px;
     }
 
     .tech-pill {
-      font-size: 11px;
-      padding: 4px 8px;
-      border-radius: 12px;
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid var(--card-border);
-      color: var(--text-dim);
+      font-size: 12px;
+      padding: 4px 10px;
+      border-radius: 4px;
+      background: rgba(65, 234, 212, 0.1);
+      color: var(--biolum);
+      border: none;
     }
 
     .project-title {
       font-size: 18px;
-      font-weight: 700;
+      font-weight: 600;
       margin: 0;
-      line-height: 1.3;
+      color: var(--text);
     }
 
     .project-desc {
       font-size: 14px;
       color: var(--text-dim);
       margin: 0;
-      display: -webkit-box;
-      -webkit-line-clamp: 4;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
+      line-height: 1.5;
     }
 
     /* Dev Mode UI */
@@ -645,6 +637,222 @@
     .hidden {
       display: none !important;
     }
+
+    /* ========== AUV Fleet Section ========== */
+    .fleet-section {
+      padding: 80px 0;
+    }
+
+    .section-header {
+      margin-bottom: 48px;
+    }
+
+    .section-header h2 {
+      font-size: 32px;
+      margin: 0 0 8px;
+      color: var(--text);
+    }
+
+    .section-header p {
+      color: var(--text-dim);
+      margin: 0;
+    }
+
+    .fleet-grid {
+      display: flex;
+      justify-content: center;
+      gap: 60px;
+      flex-wrap: wrap;
+    }
+
+    .auv-item {
+      position: relative;
+      text-align: center;
+    }
+
+    .auv-image {
+      width: 200px;
+      height: 200px;
+      object-fit: contain;
+      background: transparent;
+      filter: drop-shadow(0 8px 24px rgba(65, 234, 212, 0.2)) drop-shadow(0 4px 12px rgba(0, 0, 0, 0.4));
+      transition: transform 0.3s ease, filter 0.3s ease;
+      cursor: pointer;
+    }
+
+    .auv-item:hover .auv-image {
+      transform: scale(1.05);
+    }
+
+    .auv-name {
+      margin-top: 16px;
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .auv-spec-card {
+      position: absolute;
+      left: 220px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: var(--ocean-mid);
+      border: 1px solid var(--biolum);
+      border-radius: var(--radius-md);
+      padding: 20px;
+      width: 280px;
+      text-align: left;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.25s, visibility 0.25s;
+      z-index: 50;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+    }
+
+    .auv-item:hover .auv-spec-card {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .auv-spec-card h4 {
+      margin: 0 0 12px;
+      color: var(--biolum);
+      font-size: 16px;
+    }
+
+    .spec-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 6px 0;
+      border-bottom: 1px solid var(--card-border);
+      font-size: 13px;
+    }
+
+    .spec-row:last-child {
+      border-bottom: none;
+    }
+
+    .spec-label {
+      color: var(--text-dim);
+    }
+
+    .spec-value {
+      color: var(--text);
+      text-align: right;
+    }
+
+    .spec-list {
+      margin: 8px 0;
+      padding-left: 16px;
+      color: var(--text-dim);
+      font-size: 12px;
+    }
+
+    .spec-list li {
+      margin-bottom: 4px;
+    }
+
+    /* ========== Field Experience Gallery ========== */
+    .field-section {
+      padding: 80px 0;
+    }
+
+    .field-gallery {
+      display: flex;
+      gap: 16px;
+      overflow-x: auto;
+      padding-bottom: 16px;
+      scroll-snap-type: x mandatory;
+    }
+
+    .field-gallery::-webkit-scrollbar {
+      height: 6px;
+    }
+
+    .field-gallery::-webkit-scrollbar-track {
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 3px;
+    }
+
+    .field-gallery::-webkit-scrollbar-thumb {
+      background: var(--biolum-dim);
+      border-radius: 3px;
+    }
+
+    .field-item {
+      flex-shrink: 0;
+      width: 240px;
+      scroll-snap-align: start;
+    }
+
+    .field-media {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+      border-radius: var(--radius-md);
+      background: #000;
+    }
+
+    .field-item video {
+      opacity: 0.8;
+      transition: opacity 0.3s;
+    }
+
+    .field-item:hover video {
+      opacity: 1;
+    }
+
+    .field-caption {
+      margin-top: 8px;
+      font-size: 13px;
+      color: var(--text-dim);
+    }
+
+    /* ========== Astrophotography Section ========== */
+    .astro-section {
+      padding: 80px 0;
+    }
+
+    .astro-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 16px;
+    }
+
+    .astro-item {
+      position: relative;
+      overflow: hidden;
+      border-radius: var(--radius-md);
+      aspect-ratio: 4/3;
+    }
+
+    .astro-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+
+    .astro-item:hover img {
+      transform: scale(1.05);
+    }
+
+    .astro-caption {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 12px;
+      background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+      color: var(--text);
+      font-size: 14px;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .astro-item:hover .astro-caption {
+      opacity: 1;
+    }
   </style>
 </head>
 
@@ -681,6 +889,33 @@
 
     <!-- Dynamic Journey Container -->
     <section class="journey" id="journey-root"></section>
+
+    <!-- AUV Fleet Section -->
+    <section class="fleet-section">
+      <div class="section-header">
+        <h2>AUV Fleet</h2>
+        <p>Vehicles I've worked with — hover to see specs</p>
+      </div>
+      <div class="fleet-grid" id="fleet-root"></div>
+    </section>
+
+    <!-- Field Experience Gallery -->
+    <section class="field-section">
+      <div class="section-header">
+        <h2>Field Experience</h2>
+        <p>Real-world testing and deployments</p>
+      </div>
+      <div class="field-gallery" id="field-root"></div>
+    </section>
+
+    <!-- Astrophotography Section -->
+    <section class="astro-section">
+      <div class="section-header">
+        <h2>Astrophotography</h2>
+        <p>Capturing the cosmos — a hobby that demands patience and precision</p>
+      </div>
+      <div class="astro-grid" id="astro-root"></div>
+    </section>
 
     <section class="about-section">
       <h2>Let's build reliable autonomy.</h2>
@@ -749,6 +984,62 @@
       { id: 404, phase: 'opensource', title: "ROS2 Neural A*", desc: "First ROS2 plugin for data-driven search-based planning using modified encoder-decoder network.", tech: ["Neural A*", "ROS2", "PyTorch"], media: "assets/astar.gif", isGif: true, github: "https://github.com/alucard1311/ROS2-Nueral-AStar" },
       { id: 5, phase: 'opensource', title: "ENU-ROS Transformations", desc: "ENU tangential plane ROS package solving curvature inaccuracies in linearised geodetic data planning.", tech: ["Geodesy", "ROS", "Planning"], media: "assets/enu-tf.gif", isGif: true, github: "http://github.com/alucard1311/enu-ros-tf" },
       { id: 6, phase: 'opensource', title: "StyleGAN2 Feature Morphing", desc: "StyleGAN2-based feature morphing pipeline combined with pix2pixHD for image-to-image translation.", tech: ["StyleGAN2", "Deep Learning"], media: "assets/stylegan_morphing.gif", isGif: true, github: "https://github.com/alucard1311/FeedFwd-GAN2-Distillation" }
+    ];
+
+    /* ========================================
+       AUV FLEET DATA - Edit this to add AUVs
+       ======================================== */
+    const auvFleet = [
+      {
+        id: "hyperhorizon",
+        name: "Hyper Horizon AUV",
+        image: "assets/auv_hyperhorizon.png",
+        depth: "100m rated",
+        dimensions: "1.2m × 0.4m",
+        sensors: ["DVL", "USBL", "Depth Sensor"],
+        hardware: ["Jetson Nano", "Blue Robotics T200", "Pixhawk"]
+      },
+      {
+        id: "dragon",
+        name: "Dragon AUV",
+        image: "assets/auv_dragon.png",
+        depth: "50m rated",
+        dimensions: "0.8m × 0.3m",
+        sensors: ["Hydrophone Array", "IMU", "Pressure Sensor"],
+        hardware: ["Raspberry Pi 4", "Custom ESCs", "STM32"]
+      },
+      {
+        id: "690",
+        name: "690 Research AUV",
+        image: "assets/auv_690.png",
+        depth: "200m rated",
+        dimensions: "1.5m × 0.5m",
+        sensors: ["Multibeam Sonar", "DVL", "CTD"],
+        hardware: ["NVIDIA Jetson AGX", "Fiber Optic Gyro"]
+      }
+    ];
+
+    /* ==========================================
+       FIELD EXPERIENCE DATA - Edit to add media
+       ========================================== */
+    const fieldExperience = [
+      { type: "video", src: "assets/field/IMG_2555.MOV", caption: "Field deployment" },
+      { type: "video", src: "assets/field/IMG_3002.MOV", caption: "Testing session" },
+      { type: "video", src: "assets/field/IMG_4494.MOV", caption: "Lake trials" },
+      { type: "video", src: "assets/field/IMG_4638.MOV", caption: "Underwater test" },
+      { type: "video", src: "assets/field/IMG_4639_compressed.mp4", caption: "Recovery operation" },
+      { type: "image", src: "assets/field/IMG_3972.heic", caption: "Equipment setup" },
+      { type: "image", src: "assets/field/IMG_6362.HEIC", caption: "Dock preparation" },
+      { type: "image", src: "assets/field/IMG_6701.HEIC", caption: "Team deployment" }
+    ];
+
+    /* ==========================================
+       ASTROPHOTOGRAPHY DATA - Edit to add photos
+       ========================================== */
+    const astrophotos = [
+      { src: "assets/astro/DSC00725_GraXpert.png", caption: "Deep Sky Object" },
+      { src: "assets/astro/Geminids - Sequator_GraXpert.png", caption: "Geminids Meteor Shower" },
+      { type: "video", src: "assets/astro/milkyway_compressed.mp4", caption: "Milky Way Timelapse" }
     ];
 
     // --- Engine ---
@@ -821,6 +1112,101 @@
 
       document.body.classList.toggle('dev-visible', devMode);
       qs('#addPhaseBtn').style.display = devMode ? 'block' : 'none';
+
+      // Render new sections
+      renderFleet();
+      renderFieldExperience();
+      renderAstrophotography();
+    }
+
+    // --- Render AUV Fleet ---
+    function renderFleet() {
+      const root = qs('#fleet-root');
+      root.innerHTML = '';
+
+      auvFleet.forEach(auv => {
+        const item = document.createElement('div');
+        item.className = 'auv-item';
+        item.innerHTML = `
+          <img src="${auv.image}" alt="${auv.name}" class="auv-image" onerror="this.style.opacity=0.3">
+          <div class="auv-name">${auv.name}</div>
+          <div class="auv-spec-card">
+            <h4>${auv.name} Specs</h4>
+            <div class="spec-row">
+              <span class="spec-label">Depth Rating</span>
+              <span class="spec-value">${auv.depth}</span>
+            </div>
+            <div class="spec-row">
+              <span class="spec-label">Dimensions</span>
+              <span class="spec-value">${auv.dimensions}</span>
+            </div>
+            <div class="spec-row">
+              <span class="spec-label">Sensors</span>
+              <span class="spec-value"></span>
+            </div>
+            <ul class="spec-list">
+              ${auv.sensors.map(s => `<li>${s}</li>`).join('')}
+            </ul>
+            <div class="spec-row">
+              <span class="spec-label">Hardware</span>
+              <span class="spec-value"></span>
+            </div>
+            <ul class="spec-list">
+              ${auv.hardware.map(h => `<li>${h}</li>`).join('')}
+            </ul>
+          </div>
+        `;
+        root.appendChild(item);
+      });
+    }
+
+    // --- Render Field Experience Gallery ---
+    function renderFieldExperience() {
+      const root = qs('#field-root');
+      root.innerHTML = '';
+
+      fieldExperience.forEach(item => {
+        const el = document.createElement('div');
+        el.className = 'field-item';
+
+        if (item.type === 'video') {
+          el.innerHTML = `
+            <video src="${item.src}" class="field-media" muted loop playsinline 
+                   onmouseenter="this.play()" onmouseleave="this.pause();this.currentTime=0;"></video>
+            <div class="field-caption">${item.caption}</div>
+          `;
+        } else {
+          el.innerHTML = `
+            <img src="${item.src}" class="field-media" alt="${item.caption}" onerror="this.style.opacity=0.3">
+            <div class="field-caption">${item.caption}</div>
+          `;
+        }
+        root.appendChild(el);
+      });
+    }
+
+    // --- Render Astrophotography Gallery ---
+    function renderAstrophotography() {
+      const root = qs('#astro-root');
+      root.innerHTML = '';
+
+      astrophotos.forEach(photo => {
+        const item = document.createElement('div');
+        item.className = 'astro-item';
+
+        if (photo.type === 'video') {
+          item.innerHTML = `
+            <video src="${photo.src}" autoplay loop muted playsinline style="width:100%;height:100%;object-fit:cover;"></video>
+            <div class="astro-caption">${photo.caption}</div>
+          `;
+        } else {
+          item.innerHTML = `
+            <img src="${photo.src}" alt="${photo.caption}" onerror="this.style.opacity=0.3">
+            <div class="astro-caption">${photo.caption}</div>
+          `;
+        }
+        root.appendChild(item);
+      });
     }
 
     // --- Interaction Logic ---
