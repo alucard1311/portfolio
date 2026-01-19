@@ -977,8 +977,8 @@
       { id: 'aepl-2', phase: 'aepl', title: "Sim-to-Real Validation Pipeline", desc: "Built repeatable sim-to-real validation tools. Created containerizable SITL/HITL-style regression scenarios to speed controller tuning.", tech: ["Docker", "Gazebo", "CI/CD"], github: "", media: null },
 
       /* VT Sub-Journey Ordered (Latest First) */
-      { id: 2, phase: 'vt', title: "Decentralized Multi-AUV Tracking", desc: "Thesis Work: Decentralized tracking using bearing-only measurements with port-starboard ambiguity using Bernoulli RFS filter.", tech: ["Particle Filters", "RFS", "Python"], media: "assets/multi_auv_tracking.gif", isGif: true, github: "https://github.com/alucard1311/multi-auv-tracking", featured: true },
-      { id: 1, phase: 'vt', title: "Dragon AUV — Acoustic Tracking", desc: "Led development of custom underwater vehicle. Designed electronics, power systems, waterproof housings, and firmware.", tech: ["ROS", "C++", "Embedded"], media: "assets/DRAGON.MOV", isGif: false, github: "https://github.com/alucard1311/dragon_auv" },
+      { id: 2, phase: 'vt', title: "Distributed Information Fusion for Multi-AUV Tracking", desc: "Research Work: Implementing distributed information fusion (DIFFUSION) for multistatic sensor networks. Collaborative tracking using Random Finite Set formulation with track-to-track association/fusion for underwater surveillance.", tech: ["Particle Filters", "RFS", "Python", "Information Fusion"], media: "assets/multi_auv_tracking.gif", isGif: true, github: "", featured: true },
+      { id: 1, phase: 'vt', title: "Acoustic Target Tracking (Dragon AUV)", desc: "Engineered ambiguity-aware Bayesian estimation for underwater sensing using hydrophone, sonar, and IMU streams. Reduced drift 4× (2.0m → 0.5m) over 500m trajectories with multi-hypothesis tracking.", tech: ["EKF", "Multi-Hypothesis Tracking", "ROS", "C++"], media: "assets/DRAGON.MOV", isGif: false, github: "https://github.com/alucard1311/dragon_auv" },
       { id: 4, phase: 'vt', title: "Methane Plume Segmentation (690 AUV)", desc: "Engineered 3D sonar change detection pipeline. Integrated decision-level fusion with probabilistic Octree mapping.", tech: ["3D Sonar", "Octree", "Segmentation"], media: "assets/sonar_change_detection.gif", isGif: true, github: "https://github.com/alucard1311/ism_plume_detection" },
 
       { id: 404, phase: 'opensource', title: "ROS2 Neural A*", desc: "First ROS2 plugin for data-driven search-based planning using modified encoder-decoder network.", tech: ["Neural A*", "ROS2", "PyTorch"], media: "assets/astar.gif", isGif: true, github: "https://github.com/alucard1311/ROS2-Nueral-AStar" },
@@ -995,7 +995,6 @@
         name: "Hyper Horizon AUV",
         image: "assets/auv_hyperhorizon.png",
         depth: "500m rated",
-        dimensions: "1.2m × 0.4m",
         sensors: ["DVL", "IMU", "Depth Sensor"],
         hardware: ["Jetson Nano", "Blue Robotics T200", "Pixhawk"]
       },
@@ -1004,7 +1003,6 @@
         name: "Dragon AUV",
         image: "assets/auv_dragon.png",
         depth: "50m rated",
-        dimensions: "0.8m × 0.3m",
         sensors: ["Hydrophone Array", "AHRS", "Depth Sensor", "GPS"],
         hardware: ["OrdriodC4", "Custom Telemetry Board", "Jetson Xavier"]
       },
@@ -1013,7 +1011,6 @@
         name: "690 Research AUV",
         image: "assets/auv_690.png",
         depth: "200m rated",
-        dimensions: "1.5m × 0.5m",
         sensors: ["3DSS SIDE SCAN Sonar", "DVL", "CAMERA"],
         hardware: ["NVIDIA Jetson AGX", "Custom PDB", "Acoustic Modem", "AHRS"]
       }
@@ -1026,9 +1023,8 @@
       { type: "video", src: "assets/field/IMG_2555.MOV", caption: "Field deployment" },
       { type: "video", src: "assets/field/IMG_3002.MOV", caption: "Testing session" },
       { type: "video", src: "assets/field/IMG_4494.MOV", caption: "Lake trials" },
-      { type: "video", src: "assets/field/IMG_4638.MOV", caption: "Underwater test" },
-      { type: "video", src: "assets/field/IMG_4639_compressed.mp4", caption: "Recovery operation" },
-      { type: "video", src: "assets/field/snippets.mp4", caption: "Field snippets" },
+      { type: "video", src: "assets/field/IMG_4638.MOV", caption: "Hydrofoil Testings" },
+      { type: "video", src: "assets/field/snippets.mp4", caption: "Shenanigans" },
       { type: "image", src: "assets/field/IMG_3972.heic", caption: "Equipment setup" }
     ];
 
@@ -1134,10 +1130,6 @@
             <div class="spec-row">
               <span class="spec-label">Depth Rating</span>
               <span class="spec-value">${auv.depth}</span>
-            </div>
-            <div class="spec-row">
-              <span class="spec-label">Dimensions</span>
-              <span class="spec-value">${auv.dimensions}</span>
             </div>
             <div class="spec-row">
               <span class="spec-label">Sensors</span>
