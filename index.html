@@ -1009,7 +1009,7 @@
     let careerPhases = [
       { id: 'vt', year: '2023 — Present', title: 'Virginia Tech Center for Marine Autonomy', role: 'Graduate Research Assistant & MS Thesis' },
       { id: 'aepl', year: '2022 — 2023', title: 'Hyper Horizon <span style="font-size:0.6em; display:block; margin-top:4px; opacity:0.7; font-weight:400">formerly Aerospace Engineers Pvt. Ltd.</span>', role: 'Robotics Software Developer (GNC)' },
-      { id: 'opensource', year: 'Keywords', title: 'Algorithms & Open Source', role: 'Deep Learning, ROS2, and Tools' }
+      { id: 'opensource', year: '2022 — Present', title: 'Algorithms & Open Source', role: 'Deep Learning, ROS2, and Tools' }
     ];
 
     let projects = [
@@ -1017,8 +1017,7 @@
       { id: 'aepl-2', phase: 'aepl', title: "Sim-to-Real Validation Pipeline", desc: "Built repeatable sim-to-real validation tools. Created containerizable SITL/HITL-style regression scenarios to speed controller tuning.", tech: ["Docker", "Gazebo", "CI/CD"], github: "", media: null },
 
       /* VT Sub-Journey Ordered (Latest First) */
-      { id: 2, phase: 'vt', title: "Distributed Information Fusion for Multi-AUV Tracking", desc: "Research Work: Implementing distributed information fusion (DIFFUSION) for multistatic sensor networks. Collaborative tracking using Random Finite Set formulation with track-to-track association/fusion for underwater surveillance.", tech: ["Particle Filters", "RFS", "Python", "Information Fusion"], media: "assets/multi_auv_tracking.gif", isGif: true, github: "", featured: true },
-      { id: 1, phase: 'vt', title: "Acoustic Target Tracking (Dragon AUV)", desc: "Engineered ambiguity-aware Bayesian estimation for underwater sensing using hydrophone, sonar, and IMU streams. Reduced drift 4× (2.0m → 0.5m) over 500m trajectories with multi-hypothesis tracking.", tech: ["EKF", "Multi-Hypothesis Tracking", "ROS", "C++"], media: "assets/DRAGON.MOV", isGif: false, github: "https://github.com/alucard1311/dragon_auv" },
+      { id: 1, phase: 'vt', title: "Acoustic Target Tracking & Distributed Fusion", desc: "Ambiguity-aware Bayesian estimation using hydrophones, sonar, and IMU. Includes distributed information fusion (DIFFUSION) for multi-AUV networks with track-to-track association.", tech: ["EKF", "RFS", "ROS", "C++"], media: "assets/DRAGON.MOV", isGif: false, github: "https://github.com/alucard1311/dragon_auv", featured: true },
       { id: 4, phase: 'vt', title: "Methane Plume Segmentation (690 AUV)", desc: "Engineered 3D sonar change detection pipeline. Integrated decision-level fusion with probabilistic Octree mapping.", tech: ["3D Sonar", "Octree", "Segmentation"], media: "assets/sonar_change_detection.gif", isGif: true, github: "https://github.com/alucard1311/ism_plume_detection" },
 
       { id: 404, phase: 'opensource', title: "ROS2 Neural A*", desc: "Learned-guidance A* planner plugin for ROS2 Nav2.", tech: ["Neural A*", "ROS2", "PyTorch"], media: "assets/astar.gif", isGif: true, github: "https://github.com/alucard1311/ROS2-Nueral-AStar" },
