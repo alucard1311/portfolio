@@ -589,8 +589,8 @@
 
     .timeline-flow .project-card {
       position: relative;
-      max-width: 480px;
-      /* Reduced size based on feedback */
+      max-width: none;
+      /* Full width like other sections */
     }
 
     .timeline-flow .project-card::before {
@@ -994,9 +994,9 @@
         id: "hyperhorizon",
         name: "Hyper Horizon AUV",
         image: "assets/auv_hyperhorizon.png",
-        depth: "100m rated",
+        depth: "500m rated",
         dimensions: "1.2m × 0.4m",
-        sensors: ["DVL", "USBL", "Depth Sensor"],
+        sensors: ["DVL", "IMU", "Depth Sensor"],
         hardware: ["Jetson Nano", "Blue Robotics T200", "Pixhawk"]
       },
       {
@@ -1005,8 +1005,8 @@
         image: "assets/auv_dragon.png",
         depth: "50m rated",
         dimensions: "0.8m × 0.3m",
-        sensors: ["Hydrophone Array", "IMU", "Pressure Sensor"],
-        hardware: ["Raspberry Pi 4", "Custom ESCs", "STM32"]
+        sensors: ["Hydrophone Array", "AHRS", "Depth Sensor", "GPS"],
+        hardware: ["OrdriodC4", "Custom Telemetry Board", "Jetson Xavier"]
       },
       {
         id: "690",
@@ -1014,8 +1014,8 @@
         image: "assets/auv_690.png",
         depth: "200m rated",
         dimensions: "1.5m × 0.5m",
-        sensors: ["Multibeam Sonar", "DVL", "CTD"],
-        hardware: ["NVIDIA Jetson AGX", "Fiber Optic Gyro"]
+        sensors: ["3DSS SIDE SCAN Sonar", "DVL", "CAMERA"],
+        hardware: ["NVIDIA Jetson AGX", "Custom PDB", "Acoustic Modem", "AHRS"]
       }
     ];
 
@@ -1028,9 +1028,8 @@
       { type: "video", src: "assets/field/IMG_4494.MOV", caption: "Lake trials" },
       { type: "video", src: "assets/field/IMG_4638.MOV", caption: "Underwater test" },
       { type: "video", src: "assets/field/IMG_4639_compressed.mp4", caption: "Recovery operation" },
-      { type: "image", src: "assets/field/IMG_3972.heic", caption: "Equipment setup" },
-      { type: "image", src: "assets/field/IMG_6362.HEIC", caption: "Dock preparation" },
-      { type: "image", src: "assets/field/IMG_6701.HEIC", caption: "Team deployment" }
+      { type: "video", src: "assets/field/snippets.mp4", caption: "Field snippets" },
+      { type: "image", src: "assets/field/IMG_3972.heic", caption: "Equipment setup" }
     ];
 
     /* ==========================================
