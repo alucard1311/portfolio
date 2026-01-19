@@ -328,16 +328,35 @@
       gap: 16px;
     }
 
-    /* Open Source section - horizontal row, no timeline */
+    /* Open Source section - horizontal row, vertical cards */
     .opensource-grid {
       flex-direction: row;
       flex-wrap: wrap;
       justify-content: flex-start;
+      gap: 24px;
     }
 
     .opensource-grid .project-card {
-      flex: 1 1 300px;
-      max-width: 400px;
+      flex: 0 0 280px;
+      flex-direction: column;
+      max-width: 280px;
+      padding: 0;
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+    }
+
+    .opensource-grid .media-wrapper {
+      width: 100%;
+      height: 160px;
+    }
+
+    .opensource-grid .card-body {
+      padding: 16px;
+    }
+
+    .opensource-grid .project-desc {
+      font-size: 13px;
+      line-height: 1.4;
     }
 
     .project-card {
@@ -1002,9 +1021,9 @@
       { id: 1, phase: 'vt', title: "Acoustic Target Tracking (Dragon AUV)", desc: "Engineered ambiguity-aware Bayesian estimation for underwater sensing using hydrophone, sonar, and IMU streams. Reduced drift 4× (2.0m → 0.5m) over 500m trajectories with multi-hypothesis tracking.", tech: ["EKF", "Multi-Hypothesis Tracking", "ROS", "C++"], media: "assets/DRAGON.MOV", isGif: false, github: "https://github.com/alucard1311/dragon_auv" },
       { id: 4, phase: 'vt', title: "Methane Plume Segmentation (690 AUV)", desc: "Engineered 3D sonar change detection pipeline. Integrated decision-level fusion with probabilistic Octree mapping.", tech: ["3D Sonar", "Octree", "Segmentation"], media: "assets/sonar_change_detection.gif", isGif: true, github: "https://github.com/alucard1311/ism_plume_detection" },
 
-      { id: 404, phase: 'opensource', title: "ROS2 Neural A*", desc: "First ROS2 plugin for data-driven search-based planning using modified encoder-decoder network.", tech: ["Neural A*", "ROS2", "PyTorch"], media: "assets/astar.gif", isGif: true, github: "https://github.com/alucard1311/ROS2-Nueral-AStar" },
-      { id: 5, phase: 'opensource', title: "ENU-ROS Transformations", desc: "ENU tangential plane ROS package solving curvature inaccuracies in linearised geodetic data planning.", tech: ["Geodesy", "ROS", "Planning"], media: "assets/enu-tf.gif", isGif: true, github: "http://github.com/alucard1311/enu-ros-tf" },
-      { id: 6, phase: 'opensource', title: "StyleGAN2 Feature Morphing", desc: "StyleGAN2-based feature morphing pipeline combined with pix2pixHD for image-to-image translation.", tech: ["StyleGAN2", "Deep Learning"], media: "assets/stylegan_morphing.gif", isGif: true, github: "https://github.com/alucard1311/FeedFwd-GAN2-Distillation" }
+      { id: 404, phase: 'opensource', title: "ROS2 Neural A*", desc: "Learned-guidance A* planner plugin for ROS2 Nav2.", tech: ["Neural A*", "ROS2", "PyTorch"], media: "assets/astar.gif", isGif: true, github: "https://github.com/alucard1311/ROS2-Nueral-AStar" },
+      { id: 5, phase: 'opensource', title: "ENU-ROS Transform", desc: "ROS package for ENU tangential plane transformations.", tech: ["Geodesy", "ROS"], media: "assets/enu-tf.gif", isGif: true, github: "http://github.com/alucard1311/enu-ros-tf" },
+      { id: 6, phase: 'opensource', title: "StyleGAN2 Morphing", desc: "Feature morphing with pix2pixHD translation.", tech: ["StyleGAN2", "Deep Learning"], media: "assets/stylegan_morphing.gif", isGif: true, github: "https://github.com/alucard1311/FeedFwd-GAN2-Distillation" }
     ];
 
     /* ========================================
@@ -1046,7 +1065,6 @@
       { type: "video", src: "assets/field/IMG_4494.MOV", caption: "Lake trials" },
       { type: "video", src: "assets/field/IMG_4638.MOV", caption: "Hydrofoil Testings" },
       { type: "video", src: "assets/field/snippets.mp4", caption: "Shenanigans" },
-      { type: "image", src: "assets/field/IMG_3972.heic", caption: "Equipment setup" }
     ];
 
     /* ==========================================
