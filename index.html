@@ -284,6 +284,15 @@
       }
     }
 
+    /* Open Source phase - no timeline connector */
+    .phase.no-timeline {
+      padding-left: 0;
+    }
+
+    .phase.no-timeline::after {
+      display: none;
+    }
+
     .phase-header {
       margin-bottom: 32px;
       position: relative;
@@ -317,6 +326,18 @@
       display: flex;
       flex-direction: column;
       gap: 16px;
+    }
+
+    /* Open Source section - horizontal row, no timeline */
+    .opensource-grid {
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+    }
+
+    .opensource-grid .project-card {
+      flex: 1 1 300px;
+      max-width: 400px;
     }
 
     .project-card {
@@ -1048,10 +1069,12 @@
       careerPhases.forEach(ph => {
         // 1. Create Phase Section
         const div = document.createElement('div');
-        div.className = 'phase';
+        div.className = (ph.id === 'opensource') ? 'phase no-timeline' : 'phase';
 
         // Custom Layout Check
-        const gridClass = (ph.id === 'vt') ? 'timeline-flow' : 'project-grid';
+        let gridClass = 'project-grid';
+        if (ph.id === 'vt') gridClass = 'timeline-flow';
+        if (ph.id === 'opensource') gridClass = 'project-grid opensource-grid';
 
         div.innerHTML = `
       <div class="phase-header">
