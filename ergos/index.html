@@ -4,9 +4,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Ergos — The Governed Robot Mind</title>
+  <title>Ergos — A Developmental Ladder to a Governed Robot Mind</title>
   <meta name="description"
-    content="A governed memory grafted onto a frozen robot body: teach in one sentence, remember across restarts, forget with a certificate, refuse to guess. Every number a live-recorded receipt." />
+    content="A research thesis: kill-gated rungs with frozen, pre-registered bars raise a robot mind from symbol-birth to a governed memory grafted onto a frozen OpenVLA-7B — teach in one sentence, persist across restarts, forget with a certificate, refuse to guess. Failures published; every number a live-recorded receipt." />
   <style>
     :root {
       --bg: #FCFBF9;
@@ -83,12 +83,56 @@
       margin: 0 0 0.9rem;
     }
 
+    .byline {
+      font-family: var(--mono);
+      font-size: 0.78rem;
+      letter-spacing: 0.06em;
+      color: var(--ink-dim);
+      margin: 0 0 1.6rem;
+    }
+
     .thesis {
       font-size: 1.12rem;
       color: var(--ink-soft);
       max-width: 36em;
       margin: 0 0 2.25rem;
     }
+
+    /* abstract */
+    .abstract {
+      border: 1px solid var(--hair);
+      border-radius: 6px;
+      background: var(--panel);
+      padding: 1.3rem 1.5rem 0.6rem;
+      margin: 0 0 2.4rem;
+    }
+
+    .abstract .lab {
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--ink-dim);
+      display: block;
+      margin-bottom: 0.7rem;
+    }
+
+    .abstract p { font-size: 0.98rem; }
+
+    /* contents */
+    .toc {
+      font-family: var(--mono);
+      font-size: 0.78rem;
+      color: var(--ink-soft);
+      columns: 2;
+      column-gap: 2.5rem;
+      margin: 0 0 1rem;
+      padding-left: 1.1rem;
+    }
+
+    .toc li { margin-bottom: 0.4rem; }
+    .toc a { text-decoration: none; }
+    .toc a:hover { text-decoration: underline; }
 
     .filmbox { margin: 0 0 0.6rem; }
 
@@ -140,7 +184,6 @@
 
     p strong, li strong { color: var(--ink); font-weight: 500; }
 
-    /* indictment list */
     ol.indict {
       margin: 0 0 1rem;
       padding-left: 1.3rem;
@@ -156,6 +199,25 @@
     }
 
     ul.plain li { margin-bottom: 0.6rem; }
+
+    /* banked law callout */
+    .law {
+      border-left: 2px solid var(--ink-dim);
+      margin: 1.4rem 0 1.5rem;
+      padding: 0.15rem 0 0.15rem 1.15rem;
+    }
+
+    .law .lab {
+      font-family: var(--mono);
+      font-size: 0.66rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--ink-dim);
+      display: block;
+      margin-bottom: 0.25rem;
+    }
+
+    .law p { margin: 0; color: var(--ink); font-size: 0.98rem; }
 
     /* receipts strip */
     .receipts {
@@ -218,20 +280,23 @@
       color: var(--ink-dim);
       letter-spacing: 0.03em;
       margin-top: 0.55rem;
+      line-height: 1.55;
     }
 
-    /* lifecycle table */
-    .tablewrap { overflow-x: auto; margin: 1.4rem 0 1.6rem; }
+    figcaption .fno { color: var(--ink); }
+
+    /* tables */
+    .tablewrap { overflow-x: auto; margin: 1.4rem 0 0.6rem; }
 
     table {
       border-collapse: collapse;
       width: 100%;
-      font-size: 0.92rem;
+      font-size: 0.9rem;
     }
 
     th, td {
       text-align: left;
-      padding: 0.55rem 1rem 0.55rem 0;
+      padding: 0.5rem 0.9rem 0.5rem 0;
       border-bottom: 1px solid var(--hair);
       vertical-align: top;
     }
@@ -245,10 +310,37 @@
       font-weight: 400;
     }
 
-    td.mono {
+    td.mono, td .m {
       font-family: var(--mono);
-      font-size: 0.88rem;
+      font-size: 0.85rem;
       white-space: nowrap;
+    }
+
+    .tcap {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      color: var(--ink-dim);
+      letter-spacing: 0.03em;
+      margin: 0.55rem 0 1.5rem;
+      line-height: 1.55;
+    }
+
+    .tcap .fno { color: var(--ink); }
+
+    /* appendix list */
+    dl.receiptlist { margin: 1.2rem 0; }
+
+    dl.receiptlist dt {
+      font-family: var(--mono);
+      font-size: 0.8rem;
+      color: var(--ink);
+      margin-top: 0.9rem;
+    }
+
+    dl.receiptlist dd {
+      margin: 0.15rem 0 0 0;
+      font-size: 0.92rem;
+      color: var(--ink-soft);
     }
 
     /* CTA footer */
@@ -275,6 +367,7 @@
     @media (max-width: 480px) {
       body { font-size: 16px; }
       h1 { font-size: 1.7rem; }
+      .toc { columns: 1; }
       .receipts { gap: 1.25rem 1.75rem; padding: 1rem 1.1rem; }
       .receipts .num { font-size: 1.15rem; }
     }
@@ -287,110 +380,467 @@
     <div class="crumb"><a href="../index.html">← Vinay Naidu</a> · Research · 2026</div>
 
     <header class="title-block">
-      <h1>Ergos — The Governed Robot Mind</h1>
-      <p class="thesis">A governed memory grafted onto a respected frozen robot body: teach it in one sentence,
-        it remembers across restarts, forgets with a verifiable certificate, and refuses to guess — every
-        number below is a live-recorded receipt.</p>
+      <h1>Ergos: A Developmental Ladder to a Governed Robot Mind</h1>
+      <p class="byline">Vinay Naidu · 2026 · research thesis · simulation study (LIBERO)</p>
+      <p class="thesis">Robots today are manufactured — finished at training time, frozen at the age of their
+        dataset. This document reports a program that <em>raises</em> one instead: a serial ladder of
+        kill-gated experiments, each with bars frozen before the run, that ends with a governed memory
+        grafted onto a respected frozen robot body. Failures are published alongside wins; every number is a
+        live-recorded receipt.</p>
+
+      <div class="abstract">
+        <span class="lab">Abstract</span>
+        <p>Vision-language-action models have competent hands and frozen minds: they cannot be taught a new
+          word at deployment, remember nothing across a restart, cannot provably forget, and guess rather
+          than admit ignorance. We report a developmental program — the B-ladder — that builds the missing
+          faculties as separate, testable organs and holds them to pre-registered, kill-gated bars judged
+          only by the benchmark's own success checker or independent oracles, never by the organs
+          themselves. A from-scratch small body established the substrate: visual symbols that stay glued
+          to objects through manipulation (15/15 gates, three seeds), a motion algebra whose exact inverse
+          detects tampered motion logs at AUROC 1.0000, and a spinal cord in which memory reads are
+          provably load-bearing — shuffling them collapses behavior 1.9–2.2× — and in which honest refusal
+          required its own dedicated organ. The program then hit two instructive walls, both published: a
+          <em>carry wall</em> (every closed-loop failure traced to the hands, never the memory) and an
+          <em>occlusion law</em> (at the moment of placement the arm blocks every available camera, capping
+          visual self-assessment), including a pre-registered gate that failed its own frozen bar by a
+          single row and stands as a FAIL. Finally, the governed store was grafted onto a frozen
+          OpenVLA-7B: taught a new goal in one typed sentence, it drove full closed-loop carries at 29/30,
+          persisted across a complete model restart 10/10 (twin: 0/10), deleted on command with a
+          hash-verified certificate whose forgery probe was caught, and refused instructions it was never
+          taught 10/10 with zero false refusals. The base model was never trained. The full knowledge
+          lifecycle — teach, act, forget, refuse, re-teach, act — ran end-to-end in 118.6 seconds.</p>
+      </div>
+
+      <ol class="toc">
+        <li><a href="#motivation">1 · Motivation</a></li>
+        <li><a href="#method">2 · Method: the ladder discipline</a></li>
+        <li><a href="#smallbody">3 · The small body (B0–B2)</a></li>
+        <li><a href="#walls">4 · The walls</a></li>
+        <li><a href="#bigbody">5 · The big-body graft (BB0–BB2)</a></li>
+        <li><a href="#soma">6 · The Soma Cycle</a></li>
+        <li><a href="#scope">7 · Honest scope &amp; threats to validity</a></li>
+        <li><a href="#field">8 · Position in the field</a></li>
+        <li><a href="#future">9 · Future work</a></li>
+        <li><a href="#receipts">A · Acknowledged receipts</a></li>
+      </ol>
 
       <div class="filmbox">
         <video controls preload="metadata" playsinline poster="assets/poster.jpg">
           <source src="assets/bb_demo_v7_16x9.mp4" type="video/mp4" />
         </video>
-        <p class="filmnote">the demo film · 3 min · all robot behavior is unmodified lab recording — sped-up
-          clips carry on-screen speed tags · every number in the film is a live-recorded receipt</p>
+        <p class="filmnote"><span class="fno">Figure 1</span> — the demonstration film (3 min). All robot
+          behavior is unmodified lab recording; sped-up clips carry on-screen speed tags; every number in
+          the film is asserted against a live-recorded receipt at build time.</p>
       </div>
     </header>
 
-    <section id="problem">
-      <h2 class="kicker">The problem</h2>
-      <h2>Frozen minds</h2>
-      <p>Today's most advanced robots have frozen minds. Four consequences follow:</p>
+    <section id="motivation">
+      <h2 class="kicker">§1 · Motivation</h2>
+      <h2>Manufactured vs. raised</h2>
+      <p>A modern robot foundation model is manufactured: its competence is fixed the day training ends. The
+        world's best labs froze the policy deliberately, and their own research supports the decision —
+        writable weights are where regressions, forgetting, and unaccountable behavior come from. Freezing
+        is what made these models dependable enough to ship. But the freeze has four consequences that no
+        amount of scale removes:</p>
       <ol class="indict">
-        <li><strong>You can't teach them.</strong> Your home, your words, your objects are not in any dataset —
-          and a frozen policy cannot take a correction.</li>
-        <li><strong>They remember nothing about you.</strong> Whatever a session establishes is gone when the
-          session ends.</li>
-        <li><strong>They can't forget.</strong> There is no mechanism to remove something — let alone prove it
-          was removed.</li>
-        <li><strong>They never say "I don't know."</strong> Asked for something outside their training, they
-          guess.</li>
+        <li><strong>You can't teach them.</strong> Your home, your words, your objects are not in any
+          dataset — and a frozen policy cannot take a correction without a training run.</li>
+        <li><strong>They remember nothing about you.</strong> Whatever a session establishes is gone when
+          the session ends.</li>
+        <li><strong>They can't forget.</strong> There is no mechanism to remove something they were told —
+          let alone prove it was removed.</li>
+        <li><strong>They never say "I don't know."</strong> Asked for something outside their training,
+          they guess. A guess in a kitchen is broken glass, or worse.</li>
       </ol>
-      <p>Ergos is a governed memory grafted onto a frozen robot body (OpenVLA-7B, in the LIBERO simulation
-        benchmark). Every experiment below runs the same body with two minds: <strong>ERGOS</strong>, with the
-        governed memory, and <strong>TWIN</strong>, the untouched original.</p>
+      <p>The thesis of this program is that the remedy is not a better training run but a different kind of
+        component: a <strong>governed memory</strong> that sits between the user and the frozen policy, in
+        which four capabilities exist as structure rather than as tuned behavior. We call them the four
+        owned organs: <strong>teach-by-write</strong> (a new fact lands by writing a record, not a
+        gradient), <strong>no-forget</strong> (the base is never trained, so old competence cannot erode),
+        <strong>certified-delete</strong> (removal emits a verifiable certificate, and forged certificates
+        fail verification), and <strong>honest-abstain</strong> (when no memory resolves a request, the
+        system refuses to act rather than guessing).</p>
+      <p>This is governance by structure. An organism that fails by returning nothing traceable is
+        categorically different from one that confidently fabricates: the first can be audited, corrected,
+        and trusted with a household; the second cannot. The experiments below ask whether the four organs
+        can be built, whether they survive contact with a real closed-loop body, and whether the whole
+        assembly can be demonstrated on a body the field already respects — with every claim carrying its
+        receipt.</p>
     </section>
 
-    <section id="teach">
-      <h2 class="kicker">01 · Teach</h2>
-      <h2>One sentence, not one training run</h2>
-      <p><strong>The stake.</strong> Your home is not in any dataset. "Snackbowl" means nothing to a robot —
-        and there is no retraining pipeline in your kitchen.</p>
-      <p><strong>What we ran.</strong> One typed sentence — <em>"snackbowl = the bowl by the cookie box"</em> —
-        then both minds were asked to fetch the snackbowl. ERGOS fetches it. TWIN, given the same words, flails
-        until it times out at its 220-step budget.</p>
-      <div class="receipts">
-        <div class="r"><span class="num">0.14&thinsp;s</span><span class="lab">to teach</span></div>
-        <div class="r"><span class="num">29 / 30</span><span class="lab">teach success</span></div>
-        <div class="r"><span class="num">timeout</span><span class="lab">twin, at 220 steps</span></div>
+    <section id="method">
+      <h2 class="kicker">§2 · Method</h2>
+      <h2>The ladder discipline</h2>
+      <p>The program is organized as a <strong>ladder</strong>: a serial sequence of rungs, each a
+        self-contained experiment with its own question, its own pass bars, and its own kill condition. No
+        rung starts before the prior rung is blessed or its failure is characterized and banked. Five rules
+        make the ladder trustworthy:</p>
+      <ul class="plain">
+        <li><strong>Bars are frozen before the run.</strong> Every rung's pass thresholds and kill
+          conditions are written down before any gated data is collected. After that, a miss is a result,
+          not a bug to patch. Where a bar was ever amended, the amendment was made pre-run and is recorded
+          as such.</li>
+        <li><strong>Anti-circularity.</strong> Success is judged only by the benchmark's own success
+          checker or by an independent oracle (for example, the simulator's ground-truth object poses) —
+          never by the organs under test. The memory never grades the memory. The judges are never
+          trained.</li>
+        <li><strong>Every claim carries a live-recorded receipt.</strong> Each gated run emits per-episode
+          machine-readable records — outcomes, decisions, timings, certificate fields — and every number in
+          this document traces to one. The demonstration film goes further: its build asserts each
+          on-screen value against the source manifests and refuses to render a frame that contains a
+          character not present in the file.</li>
+        <li><strong>Eyeball every test.</strong> No aggregate is believed until per-example
+          prediction-vs-ground-truth rows (and, for embodied runs, rendered rollouts) have been inspected.
+          Several findings below — including the program's most important failure diagnoses — came from
+          the eyeball pass, not the metric.</li>
+        <li><strong>Failures are published.</strong> Rungs that missed their bars appear in this document
+          with the same prominence as rungs that passed, because a ladder that only reports wins is
+          indistinguishable from one that lowered its bars.</li>
+      </ul>
+      <p>Two standing controls run through everything. The <strong>manufactured twin</strong> is defined
+        once and reused at every rung: the same body, the same data budget, the same training where
+        training exists, tuned in good faith — the "manufactured" lifecycle against which development is
+        measured. The <strong>shuffled-memory control</strong> deliberately corrupts the mapping between
+        what the memory resolves and what the body receives; if behavior does not collapse under shuffle,
+        the memory was decorative and any win is disallowed.</p>
+      <p>The discipline is not free, and it is not decorative either. During the big-body run the
+        adversarial review layer caught two orchestrator-authored errors before either could cost a run: a
+        wrong instruction table that would have silently invalidated all three experimental arms, and an
+        inverted axis in the independent pose oracle. Both were surfaced by a cheap one-task smoke gate run
+        before the expensive full battery — cheap validation before expensive runs is itself one of the
+        ladder's operating laws.</p>
+    </section>
+
+    <section id="smallbody">
+      <h2 class="kicker">§3 · The small body</h2>
+      <h2>B0–B2: symbol, witness, spinal cord</h2>
+      <p>Before any respected body was involved, the faculties were built and gated on a from-scratch small
+        body — deliberately weak hands, so that every claim about memory would have to stand on its own.</p>
+
+      <h3>B0 — Birth of the symbol</h3>
+      <p><strong>The question.</strong> On text, the token <em>is</em> the entity. Embodied, a blob of
+        pixels must become a stable symbol: the same object must map to the same memory slot across frames,
+        through manipulation, and a never-seen object must be recognizably <em>new</em>. If the symbol
+        cannot be born, nothing above it can be trusted, so this rung carried the ladder's first kill
+        condition.</p>
+      <p><strong>The bars.</strong> Five gates, three seeds each, on real benchmark pixels with
+        ground-truth identity from the simulator: cross-frame slot-glue ≥ 0.90; re-address of a known
+        object by type and by instance ≥ 0.85; calibrated abstention on never-written objects, AUROC
+        ≥ 0.85; and no fragmentation or collapse of identities (clustering agreement ≥ 0.80).</p>
+      <p><strong>The result: 15/15 — every gate, every seed.</strong></p>
+      <div class="tablewrap">
+        <table>
+          <thead>
+            <tr><th>Gate (bar)</th><th>seed 0</th><th>seed 1</th><th>seed 2</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Slot-glue (≥ 0.90)</td><td class="mono">0.992</td><td class="mono">0.988</td><td class="mono">0.988</td></tr>
+            <tr><td>Re-address, type (≥ 0.85)</td><td class="mono">0.981</td><td class="mono">0.915</td><td class="mono">0.972</td></tr>
+            <tr><td>Re-address, instance (≥ 0.85)</td><td class="mono">0.906</td><td class="mono">0.866</td><td class="mono">0.876</td></tr>
+            <tr><td>Novel-object abstain AUROC (≥ 0.85)</td><td class="mono">0.980</td><td class="mono">0.980</td><td class="mono">0.979</td></tr>
+            <tr><td>Identity clustering ARI (≥ 0.80)</td><td class="mono">0.836</td><td class="mono">0.837</td><td class="mono">0.820</td></tr>
+          </tbody>
+        </table>
       </div>
+      <p class="tcap"><span class="fno">Table 1</span> — B0 symbol-birth gates, three disjoint seeds. The
+        kill condition (slot-glue &lt; 0.75 in all arms) was never approached.</p>
+      <p>Two findings mattered beyond the pass. First, a feature-conditioning lever that had been decisive
+        on the program's language-substrate work <em>hurt</em> on frozen vision features in every seed —
+        levers do not cargo-cult across substrates, and each graft must re-earn its recipe. Second, the
+        residual errors were not the look-alike twin objects the benchmark is built around; they were
+        <strong>occlusion and motion</strong> — a plate reduced to a crescent by the bowl placed on it, a
+        grasped object half-hidden behind the gripper. The identity of the acted-on object has to come from
+        continuous tracking, not from a static write-time snapshot. That observation became a design input
+        two rungs later, and its larger cousin returns as a named wall in §4.</p>
+
+      <h3>B1 — Motors as witness</h3>
+      <p><strong>The question.</strong> Does an exact algebra of rigid motions earn its place in the body,
+        against ordinary learned baselines, on real robot motion streams?</p>
+      <p><strong>The result: a partial, published as such.</strong> As a <em>predictor</em> of future
+        motion the exact representation tied the simplest baseline — on smooth teleoperation streams the
+        output parameterization of a learned motion head is a wash, and at long horizons prediction noise
+        swamps everything. That gate passed on only one of three seeds, and the miss is reported. But as an
+        <em>algebra</em> the organ was redeemed twice over: its exact inverse detects corrupted motion logs
+        — a spliced-in segment from another demonstration, or a 5° perturbation — at <strong>AUROC 1.0000
+        on every seed</strong> (n = 400 per seed), and its composed error stays flat at 1.6e-4 degrees from
+        5-step to 50-step chains while naive integration grows 0.025 → 1.008, a 40× drift.</p>
+      <div class="law">
+        <span class="lab">Banked law — B1</span>
+        <p>The motor organ's real value on real robot streams is the algebra, not the regression target: an
+          exact inverse (a perfect tamper and splice witness) and exact drift-free composition. Motors
+          redeem as a spine and a witness, not a crystal ball.</p>
+      </div>
+      <p>The splice witness deserves a note: it is the primitive of a <em>deposable</em> robot — a machine
+        whose motion log can be checked for fabrication algebraically, by anyone, after the fact. It sits
+        beside the deletion certificate in the same family of accountability structures.</p>
+
+      <h3>B2 — The spinal cord</h3>
+      <p><strong>The question.</strong> Can the composite work: an instruction resolves to a memory slot,
+        the slot's content conditions the motor output, and the whole chain earns its keep against the
+        manufactured twin?</p>
+      <p><strong>The first run: 5/9 — with one gate failed outright.</strong> The load-bearing test passed
+        decisively on all three seeds: shuffling the address-to-slot mapping collapsed rollout quality and
+        drove grip accuracy from 0.93–0.94 down to 0.59–0.69. The memory read was doing real work. Parity
+        with the twin passed on two of three seeds. But the abstention gate — refuse instructions naming
+        objects that were never written — <strong>failed 2/10, 1/10, 0/10</strong>. The diagnosis, from the
+        per-example eyeball pass: on a training vocabulary saturated by a single object type, the address's
+        confidence signal carries no novelty information at all; absent-object and present-object
+        confidence distributions overlapped completely.</p>
+      <p><strong>The redemption: 9/9 on three fresh seeds.</strong> The fix was not a threshold — it was a
+        new organ: a small verifier trained only to check whether a name and a seen object <em>align</em>,
+        with the probe vocabulary fenced out of its training by construction. With the verifier in place,
+        the absent and present score distributions never cross on any seed, abstention passed
+        <strong>10/10 on every seed</strong> with false-abstain rates of 0.08, 0.00, and 0.02, and the old
+        threshold rule — re-run inside the same experiment as a control — still failed. The parity gate
+        also cleared on all three seeds at an equalized training budget, with one seed strictly beating the
+        twin; the shuffled control collapsed 1.92–2.24×.</p>
+      <div class="law">
+        <span class="lab">Banked law — B2</span>
+        <p>Instruction-level abstention does not come free from the addressing machinery — it needs its own
+          organ. Verify-don't-match: a verifier trained to check alignment separates absent from present
+          with a gap that confidence thresholds never see.</p>
+      </div>
+      <p>A second law rode along: short-horizon open-loop imitation error is saturated by motion priors —
+        it cannot arbitrate whether vision is helping. Only the closed loop can. That law priced the next
+        rung correctly and set up the first wall.</p>
+    </section>
+
+    <section id="walls">
+      <h2 class="kicker">§4 · The walls</h2>
+      <h2>Two named walls, both published</h2>
+      <p>A developmental program earns trust by what it does when the ladder stops going up. The B-ladder
+        hit two walls. Both were characterized, named as laws, and published; one includes a pre-registered
+        test that failed its own bar by a single row and stands as a FAIL. This section is the credibility
+        centerpiece of the document.</p>
+
+      <h3>4.1 — The carry wall</h3>
+      <p>Dropped into the live closed-loop benchmark, the blessed small-body spinal cord scored near zero —
+        and so did its manufactured twin, at the same floor. What followed was a four-stage diagnostic arc
+        that solved, in order and each with a causal receipt, every organ except one.</p>
+      <ul class="plain">
+        <li><strong>Grasp — solved.</strong> The initial failure mode (reach without ever closing the
+          gripper) was eliminated: grippers closed in 87–100% of episodes across arms and seeds. And the
+          closed loop finally separated vision from blindness: the organism succeeded 12/300 against the
+          shuffled control's 0/300 (one-sided Fisher p = 2.2e-4) — memory reads are load-bearing even at a
+          4% success floor.</li>
+        <li><strong>Goal address — solved.</strong> The original addressing machinery scored 0.000 at
+          addressing a goal noun it was never trained on, while the B2 alignment verifier addressed the
+          same noun at 1.000, seed-invariant — the fourth independent win for the verify-don't-match law.
+          With it, goal addressing ran at ~1.0 through full episodes.</li>
+        <li><strong>Placement — solved.</strong> With the goal coming from memory, releases landed 1.5–4.5
+          cm from the <em>believed</em> goal (shuffled control: 20–25 cm — causal proof the read drives the
+          release) while the belief itself was 8–46 cm off in the world frame. Rather than repair the
+          coordinate system, the fix was to close the perceptual loop around the read at the moment of
+          action. The arc's proudest receipt: one rollout landed the object <strong>6.6 mm from the true
+          goal while the system's own belief was 87 mm off</strong> — a 13× decoupling; the eyes absorbed a
+          calibration bias the coordinate frame never fixed. Honesty at the act came with it: <strong>0
+          blind releases</strong>, 199 honest aborts, 7 justified perception-gate overrides, and 41 of 210
+          retries recovered.</li>
+        <li><strong>The carry — not solved.</strong> Address at 1.0, servo converging, release honest — and
+          roughly 90% of episodes still died holding the object in transit. Grasp security through
+          transport was the single unsolved organ, upstream of everything that worked.</li>
+      </ul>
+      <div class="law">
+        <span class="lab">Banked law — the carry wall</span>
+        <p>Every bless failure in the small body's closed-loop arc traced to the hands, never the memory.
+          The governed mind was ready before its body was.</p>
+      </div>
+      <p>One more finding from this arc is uncomfortable and therefore worth stating plainly: at equal
+        training budget, the composed honest pipeline lost the raw percentage-point race to the fused twin
+        (pooled 0.033 vs 0.123 at the final stage). Part of that gap is an honesty tax — trajectories the
+        twin converts into lucky fumbles-onto-the-target, the organism's machinery converts into structured
+        aborts. Twin-relative gates on absolute success reward fused luck; the organism's advantage is
+        measurable in mechanism receipts — shuffle collapse, statistical separation from blindness,
+        truth-vs-belief decoupling — and that is where this program stakes its claims.</p>
+
+      <h3>4.2 — The occlusion law, and the pre-registration that failed by one row</h3>
+      <p>For a system to be raised rather than manufactured, it must eventually grade its own attempts —
+        otherwise every lesson needs a human or an oracle. A study on the small body asked whether the
+        organism could self-assess success from what it sees. The answer was a law:</p>
+      <div class="law">
+        <span class="lab">Banked law — occlusion</span>
+        <p>Vision-based self-assessment capped near 0.87 for a structural reason: at the moment of
+          placement, the arm occludes every available camera — overhead and wrist alike, because the wrist
+          camera rides the occluding arm. At the one instant that decides success, the body is standing in
+          front of its own eyes.</p>
+      </div>
+      <p>The fix direction follows from the law: if vision is structurally blind at the decisive moment,
+        self-assessment must lean on <strong>non-visual effort and metacognition signals</strong> — stall
+        duration, wall-clock, the trend of goal-confidence over the attempt. A gate built on such signals
+        and calibrated on one seed looked excellent: 13/14 recovered at 1.000 precision.</p>
+      <p>Then the discipline was applied. A pre-registered test froze the bars and ran the gate on a
+        held-out seed it had never seen: 100 fresh episodes containing 12 true successes.</p>
+      <div class="receipts">
+        <div class="r"><span class="num">8 / 12</span><span class="lab">recovered — bar ≥ 7 ✓</span></div>
+        <div class="r"><span class="num">0.889</span><span class="lab">precision (8/9) — bar 0.90 ✗</span></div>
+        <div class="r"><span class="num">FAIL</span><span class="lab">verdict, per pre-registration</span></div>
+      </div>
+      <p>The gate cleared its recovery bar and missed its frozen precision bar by exactly one row — one
+        false positive where the pre-registration allowed, in effect, none. <strong>The verdict stands as a
+        FAIL.</strong> It gets no asterisk. More telling still: a pre-declared, report-only alternative rule
+        (wall-clock ≤ 80 s) happened to go 8 true positives, 0 false positives — a perfect 1.000 on this
+        very test set. It was <strong>not promoted</strong>, because promoting a rule after seeing the
+        held-out data is precisely the move the discipline exists to forbid. The held-out seed is now
+        burned — it has been seen, and can never again serve as a frozen test. A fresh pre-registration on
+        a new seed is the only honest path forward, and that is the recorded plan.</p>
+      <p>This episode is presented as a worked example rather than an embarrassment. A program that cannot
+        show you a pre-registration failing by one row — and standing — cannot ask you to believe its
+        passes. The bars in §5 are credible because the bar here was allowed to draw blood.</p>
+    </section>
+
+    <section id="bigbody">
+      <h2 class="kicker">§5 · The big-body graft</h2>
+      <h2>BB0–BB2: the governed store on a respected body</h2>
+      <p>The carry wall defined the graft. The field has bodies with 70–90% benchmark motors and frozen,
+        unteachable minds; the B-ladder had a governed, teachable mind on weak hands. The BB rungs join
+        them: the governed store, unchanged in kind, grafted onto a frozen OpenVLA-7B — a body the field
+        respects — with the base model never trained. Every experiment runs the same body with two minds:
+        <strong>ERGOS</strong> (the governed memory) and <strong>TWIN</strong> (the untouched original,
+        given raw text).</p>
+
+      <h3>BB0 — Baseline: is the body honestly wired?</h3>
+      <p>Before any organ touched it, the frozen body was run on the full benchmark suite: 10 tasks × 20
+        trials. Pooled success: <strong>166/200 = 83.0%</strong>, against a published figure of ~84.7% —
+        within noise, so the harness reproduces the body's known competence rather than a degraded copy of
+        it. The per-task curve below is the frozen twin ceiling that every subsequent claim is measured
+        against; failures clustered on genuinely hard manipulation, not harness artifacts.</p>
+      <div class="tablewrap">
+        <table>
+          <thead>
+            <tr><th>task</th><th>t0</th><th>t1</th><th>t2</th><th>t3</th><th>t4</th><th>t5</th><th>t6</th><th>t7</th><th>t8</th><th>t9</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>success</td>
+              <td class="mono">.90</td><td class="mono">.85</td><td class="mono">.85</td><td class="mono">.95</td>
+              <td class="mono">.65</td><td class="mono">.85</td><td class="mono">.95</td><td class="mono">.75</td>
+              <td class="mono">.80</td><td class="mono">.75</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="tcap"><span class="fno">Table 2</span> — BB0 twin baseline, 10 LIBERO-spatial tasks × 20
+        trials, pooled 166/200 = 83.0%. Range 0.65–0.95, no collapse; t4 (a drawer task) is the honest weak
+        point.</p>
+
+      <h3>BB1 — The organs alongside the body</h3>
+      <p>The perception, verification, and deletion organs then ran alongside the frozen policy — with
+        verified zero coupling to it — and were gated across all 10 tasks:</p>
+      <div class="tablewrap">
+        <table>
+          <thead>
+            <tr><th>gate</th><th>result</th><th>bar</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Absent-object abstain</td><td class="mono">10/10</td><td class="mono">≥ 9 ✓</td></tr>
+            <tr><td>False abstain</td><td class="mono">0/10 = 0.000</td><td class="mono">≤ 0.20 ✓</td></tr>
+            <tr><td>Perception purity</td><td>clean slots per task, no degradation</td><td class="mono">sanity ✓</td></tr>
+            <tr><td>Deletion certificate</td><td>honest delete verifies; tampered cert falsified</td><td class="mono">✓</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="tcap"><span class="fno">Table 3</span> — BB1 organ gate, full 10-task battery. Margins were
+        wide: grounding scores for present objects never fell below 0.81, and never-taught probe objects
+        never rose above 0.51, against a calibrated decision line of 0.74 — the distributions do not
+        approach each other.</p>
+
+      <h3>BB2 — Teach-through-read: the rung the program exists for</h3>
+      <p>In BB2 the instruction channel is fed <em>from memory</em>. A user teaches in one typed sentence;
+        the store writes a record; at inference, the store resolves the user's request and composes the
+        natural-language instruction the frozen policy receives. If no memory resolves the request, a
+        verifier-gated abstain stops the rollout before it starts. Delete removes the record, emits a
+        certificate, and behavior reverts. The policy itself is untouched throughout — the governed store
+        stands between user and body. Three teach modalities were run, 10 carries per target:</p>
+      <div class="tablewrap">
+        <table>
+          <thead>
+            <tr><th>arm</th><th>teach (ergos)</th><th>twin</th><th>delete</th><th>shuffle</th><th>persistence (fresh reload)</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>alias</strong></td>
+              <td class="mono">29/30 = 0.967 ✓</td>
+              <td class="mono">2/30</td>
+              <td class="mono">9/9 ✓</td>
+              <td class="mono">collapse ✓ (0/5)</td>
+              <td class="mono">10/10 vs twin 0/10 ✓</td>
+            </tr>
+            <tr>
+              <td><strong>refer</strong></td>
+              <td class="mono">29/30 = 0.967 ✓</td>
+              <td>(persist-tested)</td>
+              <td class="mono">9/9 ✓</td>
+              <td class="mono">collapse ✓</td>
+              <td class="mono">10/10 vs twin 0/10 ✓</td>
+            </tr>
+            <tr>
+              <td><strong>pref</strong></td>
+              <td class="mono">22/30 = 0.733 ⚠</td>
+              <td class="mono">0/30</td>
+              <td>cert + falsify + abstain ✓</td>
+              <td>(pose-oracle arm)</td>
+              <td class="mono">n/a</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="tcap"><span class="fno">Table 4</span> — BB2 teach-through-read, seed 41, 10 carries per
+        target. Success judged by the benchmark's own checker (alias, refer) or an independent simulator
+        pose oracle (pref) — never by the organs. No arm hit its kill condition; no bar was loosened.</p>
+      <p><strong>What each arm proves.</strong> <em>Alias</em> teaches an arbitrary new word: "snackbowl"
+        is bound to a particular bowl in one sentence, and "pick up the snackbowl" then drives a full
+        closed-loop fetch, 10/10 on the taught target. The twin, handed the same word, flails to its
+        220-step budget — the word means nothing to it. <em>Refer</em> teaches a descriptive binding ("my
+        usual bowl") with the same result; its differentiator is persistence, below. <em>Pref</em> teaches
+        a standing rule — "when there are two bowls, always the left one" — that then governs an ambiguous
+        request. The twin, with no rule, hits the intended bowl only by chance: <strong>0/30</strong>.</p>
       <figure>
         <img src="assets/still_teach.jpg"
-          alt="Side by side: ERGOS fetching the taught bowl while TWIN — NO MEMORY flails" />
-        <figcaption>same body, two minds — ERGOS after one typed sentence vs. TWIN given the same words</figcaption>
+          alt="Side by side: ERGOS fetching the taught bowl while TWIN — no memory — flails" />
+        <figcaption><span class="fno">Figure 2</span> — same body, two minds: ERGOS after one typed
+          sentence; TWIN given the same words, running out its step budget.</figcaption>
       </figure>
-    </section>
 
-    <section id="remember">
-      <h2 class="kicker">02 · Remember</h2>
-      <h2>What it learns in the day survives the night</h2>
-      <p><strong>The stake.</strong> Tuesday you teach it. What about Wednesday? For most systems, a restart is
-        amnesia.</p>
-      <p><strong>What we ran.</strong> Teach during the day; power the robot fully down; a complete restart at
-        dawn with nothing re-typed. ERGOS still fetches the snackbowl — ten times out of ten. TWIN wakes empty,
-        every time.</p>
+      <h3>Persistence: the un-fakeable part</h3>
+      <p>The headline receipt is the one no context window can imitate. The entire process was killed. The
+        7-billion-parameter body was reloaded from scratch in a fresh process; the store was loaded from
+        disk; <strong>nothing was re-taught</strong>. The taught goal still drove the body <strong>10 out
+        of 10</strong> — and the twin, which has no store, woke empty: <strong>0/10, by
+        construction</strong>. Same result on both teach modalities tested. This is knowledge in a durable
+        governed store, not residue in a session.</p>
       <div class="receipts">
-        <div class="r"><span class="num">10 / 10</span><span class="lab">ergos, after a full restart</span></div>
+        <div class="r"><span class="num">10 / 10</span><span class="lab">ergos, after full restart</span></div>
         <div class="r"><span class="num">0 / 10</span><span class="lab">twin — forever</span></div>
       </div>
       <figure>
         <img src="assets/still_persist.jpg"
           alt="After a full restart with nothing retyped: ERGOS succeeds, TWIN fails" />
-        <figcaption>after the restart, nothing retyped — ERGOS completes; TWIN never does</figcaption>
+        <figcaption><span class="fno">Figure 3</span> — after the restart, nothing retyped: ERGOS
+          completes; TWIN never does.</figcaption>
       </figure>
-    </section>
 
-    <section id="forget">
-      <h2 class="kicker">03 · Forget</h2>
-      <h2>Provably gone, not "probably gone"</h2>
-      <p><strong>The stake.</strong> You told it something private and you want it gone — not "probably," but
-        provably. The law calls this the right to be forgotten.</p>
-      <p><strong>What we ran.</strong> A forget command, and then an audit. Deletion completes in 0.016&thinsp;s
-        and emits a certificate with real hash roots that any third party can check. Then we probed the
-        auditor with a forgery — a certificate claiming deletion while the data was secretly kept. It fails
-        verification. Caught.</p>
+      <h3>Certified delete — and a forgery, caught</h3>
+      <p>Deletion is the organ the law cares about. On command, the record is removed and a certificate is
+        emitted whose hash roots any third party can recompute: the store's committed root before deletion,
+        its root after, and a verification verdict. The honest certificate verifies true. Then the auditor
+        was probed with a <strong>forgery</strong> — a certificate claiming deletion while the data was
+        secretly kept. It fails verification. Caught. After a real delete, the request that used to succeed
+        reverts to honest abstention: 9/9 across the delete battery on each teach arm.</p>
       <div class="verbatim">old_root   1562d30ec645…
 new_root   e3b0c44298fc…
 verified   true
 
 forgery probe:   verified false — caught</div>
-      <div class="receipts">
-        <div class="r"><span class="num">0.016&thinsp;s</span><span class="lab">certified delete</span></div>
-        <div class="r"><span class="num">caught</span><span class="lab">forged certificate</span></div>
-      </div>
       <figure>
         <img src="assets/still_forget.jpg"
           alt="Deletion certificate verified true beside a forged certificate stamped CAUGHT" />
-        <figcaption>the real certificate verifies; the forgery does not</figcaption>
+        <figcaption><span class="fno">Figure 4</span> — the real certificate verifies; the forgery does
+          not. Roots shown are the actual recorded values.</figcaption>
       </figure>
-    </section>
 
-    <section id="refuse">
-      <h2 class="kicker">04 · Refuse</h2>
-      <h2>The honest no</h2>
-      <p><strong>The stake.</strong> Ask a robot for something it was never taught. A guess in your home is
-        broken glass — or worse.</p>
-      <p><strong>What we ran.</strong> Both minds were asked for "the tazza" — a word neither was ever taught.
-        TWIN confidently grabs a wrong object. ERGOS refuses to act; its actual recorded decision:</p>
+      <h3>The honest no, on the big body</h3>
+      <p>Asked for "the tazza" — a word never taught — the twin confidently grabs a wrong object. ERGOS
+        refuses to run the rollout at all. Its actual recorded decision text:</p>
       <div class="verbatim">no slot resolves 'tazza' — refusing to guess. no rollout run.</div>
       <div class="receipts">
         <div class="r"><span class="num">10 / 10</span><span class="lab">abstain on never-taught</span></div>
@@ -399,22 +849,29 @@ forgery probe:   verified false — caught</div>
       <figure>
         <img src="assets/still_refuse.jpg"
           alt="ERGOS recorded refusal decision beside TWIN grabbing a wrong object" />
-        <figcaption>ERGOS's recorded decision vs. TWIN — never taught — grabbing the wrong thing</figcaption>
+        <figcaption><span class="fno">Figure 5</span> — ERGOS's recorded refusal vs. TWIN — never taught —
+          grabbing the wrong thing.</figcaption>
       </figure>
-    </section>
 
-    <section id="lifecycle">
-      <h2 class="kicker">The lifecycle</h2>
-      <h2>Teach → do → forget → refuse → re-teach → do</h2>
-      <p>The full knowledge lifecycle, run end-to-end and timed. For every other robot, each of these steps is
-        a training run — and the forget step doesn't exist.</p>
+      <h3>The shuffle control, and the pref caveat</h3>
+      <p>The shuffled-memory control held on the big body exactly as it had on the small one: force the
+        store to resolve to the wrong record and the carry <em>fails</em> (0/5) — it does not silently
+        succeed. A memory whose corruption is visible in behavior is a memory that is actually being used.</p>
+      <p>The pref arm's 0.733 sits below its 0.80 bar and is reported as the miss it is. It is also
+        localized: 10/10 and 10/10 on two of the three scenes, 2/10 on the third — and the per-rollout
+        oracle rows show the rule selected the <em>correct</em> bowl there while the body fumbled the carry
+        at a placement region where the base policy is weak. The memory picked right; the hand missed. The
+        carry wall of §4.1, met again on a body twenty times the size — which is precisely what a law is
+        for.</p>
+
+      <h3>The lifecycle, timed</h3>
+      <p>Finally, the whole knowledge lifecycle was run end-to-end and timed: teach → act → forget → refuse
+        → re-teach → act. For a manufactured system, each of those steps is a training run — and the forget
+        step does not exist.</p>
       <div class="tablewrap">
         <table>
           <thead>
-            <tr>
-              <th>Operation</th>
-              <th>Time</th>
-            </tr>
+            <tr><th>Operation</th><th>Time</th></tr>
           </thead>
           <tbody>
             <tr><td>Teach</td><td class="mono">0.14&thinsp;s</td></tr>
@@ -424,52 +881,174 @@ forgery probe:   verified false — caught</div>
           </tbody>
         </table>
       </div>
+      <p class="tcap"><span class="fno">Table 5</span> — the knowledge lifecycle on the frozen 7B body,
+        timings from the recorded event log. Almost all of the 118.6 s is the robot doing the two fetches;
+        the knowledge operations are effectively free.</p>
     </section>
 
     <section id="soma">
-      <h2 class="kicker">The Soma Cycle</h2>
+      <h2 class="kicker">§6 · The Soma Cycle</h2>
       <h2>How a lesson survives the night</h2>
-      <p>During the day, a lesson lands in short-term memory — fast to write, easy to hold while you're
-        talking to the robot. When the robot powers down, the Soma Cycle files the day's short-term memories
-        into long-term memory — the way sleep consolidates what you learned into what you know.</p>
-      <p>At dawn, a full restart finds the lesson already there. Nothing re-typed, nothing re-trained: the
-        knowledge simply <em>survived</em> the night. That is the whole claim — survival, not improvement.
-        And it is the claim the 10/10-after-restart receipt tests directly.</p>
+      <p>The persistence result has a deliberately biological framing. During the day, a lesson lands in
+        short-term memory — fast to write, easy to hold while you are talking to the robot. When the robot
+        powers down, the Soma Cycle files the day's short-term memories into long-term memory, the way
+        sleep consolidates what you learned into what you know. At dawn, a full restart finds the lesson
+        already there.</p>
+      <p><strong>The claim is survival, and only survival.</strong> The system does not improve overnight;
+        it does not reorganize itself into something smarter; nothing is claimed beyond what the 10/10
+        after-restart receipt tests directly — that what was taught in the day is still there, and still
+        drives the body, after the process that learned it has ceased to exist. That framing is stated here
+        explicitly because it is the kind of claim that inflates easily, and this program's rule is that a
+        claim may not exceed its receipt.</p>
       <figure>
         <img src="assets/still_soma.jpg"
           alt="Two-stage diagram: a short-term entry above a long-term architecture ring" />
-        <figcaption>two stages: short-term (the day's lesson) filed into long-term (what it knows)</figcaption>
+        <figcaption><span class="fno">Figure 6</span> — two stages: short-term (the day's lesson) filed
+          into long-term (what it knows). Survival, not improvement.</figcaption>
       </figure>
     </section>
 
     <section id="scope">
-      <h2 class="kicker">Honest scope</h2>
+      <h2 class="kicker">§7 · Honest scope</h2>
       <h2>What these results are — and aren't</h2>
       <ul class="plain">
-        <li><strong>Directional, single-seed results.</strong> These runs demonstrate the mechanism; they are
-          not a multi-seed statistical study.</li>
-        <li><strong>Simulation.</strong> All robot behavior is in the LIBERO benchmark, on an OpenVLA-7B body.
-          No physical robot was run.</li>
-        <li><strong>The base model is never trained.</strong> No fine-tuning, no weight updates — the body
-          stays frozen throughout.</li>
-        <li><strong>Success is judged externally.</strong> Only by the benchmark's own checker or an
-          independent pose oracle — never by our own code grading itself.</li>
-        <li><strong>Refusal is currently lexical.</strong> Ergos refuses when no memory resolves the words it
-          was given; grounding refusal in what the robot <em>sees</em> is the next rung.</li>
-        <li><strong>Every number is asserted from a live-recorded receipt.</strong> All robot behavior shown is
-          unmodified lab recording; sped-up clips carry on-screen speed tags.</li>
+        <li><strong>Directional, single-seed.</strong> The big-body results are one seed on one workstation
+          GPU, with lean trial counts (10 carries per target). They demonstrate the mechanism. Scored,
+          quotable statistics require the pre-declared multi-seed referee run (§9); until then these
+          numbers are directional and are labeled so everywhere they appear.</li>
+        <li><strong>Simulation.</strong> All robot behavior is in the LIBERO benchmark on an OpenVLA-7B
+          body. No physical robot was run.</li>
+        <li><strong>The motor ceiling is the twin's ceiling, by design.</strong> Because the store composes
+          the instruction the frozen policy receives, motor success is capped at what the body can do with
+          the composed sentence. The contribution is the governed layer — resolve, persist, delete, abstain
+          — not better hands. The control that proves this is also the honesty of it: typing the composed
+          sentence by hand produces byte-identical behavior. The store adds naming and governance, not
+          skill.</li>
+        <li><strong>Refusal is currently lexical.</strong> ERGOS refuses when no memory resolves the words
+          it was given. A visual-grounding check — refusing because the named thing is not <em>seen</em> —
+          is built but was not wired into these runs; no reported abstention is visually verified. That is
+          the next rung, not this one.</li>
+        <li><strong>Certificates are auditable, not signed.</strong> The deletion certificate's roots can
+          be recomputed by a third party, and forged certificates fail verification — but in these runs the
+          same process writes the claim and checks it. Cryptographic signing is engineering, not research,
+          and is explicitly future work.</li>
+        <li><strong>The small-body gates had scaffolding.</strong> B0 was given ground-truth segmentation
+          (its question was symbol stability, not self-segmentation), and the small body's closed-loop arc
+          never met its absolute success bar — it closed as a characterized partial whose residual, the
+          carry, is named and assigned.</li>
+        <li><strong>Success is judged externally, always.</strong> Only the benchmark's own checker or an
+          independent pose oracle ever decided an outcome. Nothing in this program grades itself — and
+          where self-grading was attempted as a research question, its pre-registered test failed and is
+          reported as failed (§4.2).</li>
       </ul>
     </section>
 
     <section id="field">
-      <h2 class="kicker">The field</h2>
-      <h2>The frozen brain was the right call</h2>
-      <p>The world's best robot labs froze the brain — and their own research shows why: writable weights are
-        where regressions, forgetting, and unaccountable behavior come from. Freezing the policy is what made
-        today's robot foundation models dependable enough to ship.</p>
-      <p>Ergos accepts that decision and builds the missing layer on top of it: a governed memory that sits
-        between the user and the frozen policy, where teaching is instant, remembering is durable, forgetting
-        is certified, and not-knowing is admissible. Same body. Governed mind.</p>
+      <h2 class="kicker">§8 · Position in the field</h2>
+      <h2>The frozen brain, and the unshipped join</h2>
+      <p>Nothing here argues against the frozen brain. The opposite: the field's decision to freeze robot
+        foundation policies was correct, and recent work from the strongest labs independently supports the
+        deeper pattern this program is built on — that gradient flow from action learning can corrupt a
+        base model's knowledge, and that the remedy is to insulate the base and feed content through a
+        separate channel (see, e.g., "Knowledge Insulation," arXiv:2505.23705). That is external,
+        respected validation of the frozen-base-plus-channel split these experiments run on.</p>
+      <p>What no one ships is the join: a channel that is also <em>governed</em> — writable in one
+        sentence, durable across restarts, deletable with a certificate a third party can check, and
+        honest about its own gaps. Retrieval systems write and read, but do not certify deletion or gate
+        action on resolution failure; frozen policies act, but cannot be taught. The four organs together,
+        demonstrated on a body the field respects, with a twin control and external judges — that
+        combination is the contribution claimed here, and it is deliberately a modest one: a governance
+        layer, not a better robot. One further methodological position: published absolute benchmark
+        numbers in this area are known to be sensitive to evaluation recipe, so this program stakes nothing
+        on absolute scores — every comparison is twin-relative under identical plumbing, which is the
+        defensible form.</p>
+    </section>
+
+    <section id="future">
+      <h2 class="kicker">§9 · Future work</h2>
+      <h2>Three pre-committed directions</h2>
+      <h3>BB3 — below the sentence</h3>
+      <p>The prompt channel caps the organism at the twin's motor ceiling. BB3 asks whether memory can
+        condition the body <em>below</em> the sentence — embedding-level conditioning — and wires the
+        already-built visual-grounding check into the abstain path, so that refusal can be about what is
+        seen, not only about what was said. BB3 gets its own pre-registration before its first run, per the
+        ladder rules.</p>
+      <h3>The π0 gauntlet — a second body, bars already frozen</h3>
+      <p>If the governed store is real, it is body-agnostic. A pre-registration — frozen 2026-07-26,
+        <em>before</em> bring-up — commits to grafting the same store, with zero model changes, onto a
+        second respected frozen body: Physical Intelligence's open-sourced π0. The framing is homage —
+        their hands, a governed mind — and the bars are already locked:</p>
+      <div class="tablewrap">
+        <table>
+          <thead>
+            <tr><th>gate</th><th>test</th><th>frozen bar</th></tr>
+          </thead>
+          <tbody>
+            <tr><td class="mono">PB0</td><td>bring-up, 10 tasks × 10 trials, canonical language</td>
+              <td>pooled ≥ 0.50; kill &lt; 0.35 (bring-up broken: stop, no gauntlet claims)</td></tr>
+            <tr><td class="mono">PB1</td><td>teach (alias), composed-from-store instruction</td>
+              <td>≥ 0.8 × its own PB0 rate (motor-ceiling-normalized); kill &lt; 0.5 × own ceiling</td></tr>
+            <tr><td class="mono">PB2</td><td>persist: fresh process, store from disk, no re-teach</td>
+              <td>≥ 0.8 × own ceiling; twin 0 by construction</td></tr>
+            <tr><td class="mono">PB3</td><td>delete: cert emit + tamper-falsify + post-delete abstain ×10</td>
+              <td>verify TRUE + falsify CAUGHT + abstain 10/10</td></tr>
+            <tr><td class="mono">PB4</td><td>shuffled-slot control</td>
+              <td>collapse — wrong slot ⇒ failed carry, not silent success</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="tcap"><span class="fno">Table 6</span> — the π0 gauntlet bars, quoted from the frozen
+        pre-registration. Success = the benchmark's own checker only; the store and judges are never
+        trained; a miss is a result, not a bug to patch. Explicitly out of scope: any claim about models
+        that are not open-sourced, and any overnight-improvement claim.</p>
+      <h3>Hardening: seeds, referees, and the burned seed's successor</h3>
+      <p>Three commitments close the list. First, every directional number in §5 goes to a pinned,
+        independent multi-seed referee run before it is ever quoted as a scored statistic. Second, the
+        self-grading gate of §4.2 gets a fresh pre-registration on a new, never-seen seed — the only honest
+        path left after the last one was burned. Third, the carry wall folds into the development-curve
+        rung the ladder was always pointed at: the organism's honest aborts are exactly the experience
+        stream a raised system should learn from, and the success-vs-experience curve — the organism
+        climbing where the frozen twin stays flat — remains the figure this program exists to earn.</p>
+    </section>
+
+    <section id="receipts">
+      <h2 class="kicker">Appendix A · Acknowledged receipts</h2>
+      <h2>What pins what</h2>
+      <p>Every number in this document traces to a machine-recorded artifact. The principal receipts, and
+        what each pins:</p>
+      <dl class="receiptlist">
+        <dt>bb1_gate_receipt.json</dt>
+        <dd>BB1 full-gate battery: per-task grounding and probe scores, the 10/10 abstain and 0/10
+          false-abstain tallies, purity checks, and the deletion-certificate proof fields (honest cert
+          verified true; tampered cert falsified).</dd>
+        <dt>bb2_alias_receipt.json</dt>
+        <dd>Alias arm: per-episode success flags for organism (29/30) and twin (2/30) per target, the
+          shuffle-control collapse (0/5) with its pre-declared collapse criteria, and per-alias delete
+          certificates with recorded old/new roots.</dd>
+        <dt>bb2_refer_receipt.json</dt>
+        <dd>Refer arm: per-episode flags (29/30), in-session twin comparison, shuffle and delete
+          batteries.</dd>
+        <dt>bb2_pref_receipt.json</dt>
+        <dd>Pref arm: per-rollout rows from the independent sim-pose oracle — which bowl was chosen, at
+          init and at end — pinning both the 22/30 result, its localization (2/10 · 10/10 · 10/10), and
+          the twin's 0/30.</dd>
+        <dt>BB2_VERDICT.md</dt>
+        <dd>The frozen bars, per-arm verdicts, and the honest-caveats block for BB2, written against the
+          receipts above.</dd>
+        <dt>B0 / B1 / B2 / B3-arc result records</dt>
+        <dd>Per-seed result files, per-example eyeball rows, and retrieval galleries for every small-body
+          gate in §3–§4.1, including the failed first B2 abstention gate and the closed-loop arc's
+          per-episode records (aborts, overrides, retries, truth-vs-belief distances).</dd>
+        <dt>Lifecycle event &amp; certificate logs</dt>
+        <dd>The timed lifecycle (0.14 s teach · 0.016 s delete · 0.0002 s re-teach · 118.6 s end-to-end),
+          the certificate roots quoted in §5, and the verbatim refusal string.</dd>
+        <dt>Film manifests + clip hashes</dt>
+        <dd>The demonstration film's build-time assertion layer: every on-screen number, string, and hash
+          is imported from the run manifests and the render fails if a displayed value drifts; restart
+          identity is pinned by matching clip checksums.</dd>
+        <dt>π0 gauntlet pre-registration</dt>
+        <dd>The frozen bars of Table 6, committed 2026-07-26, before bring-up.</dd>
+      </dl>
     </section>
 
     <div class="cta">
@@ -478,7 +1057,7 @@ forgery probe:   verified false — caught</div>
     </div>
 
     <footer>
-      Ergos · 2026 · every number on this page is a live-recorded receipt
+      Ergos · 2026 · failures published · every number on this page is a live-recorded receipt
     </footer>
 
   </div>
